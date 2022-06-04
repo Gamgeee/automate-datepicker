@@ -1,0 +1,19 @@
+<div class="automate-datepicker default">
+    <div class="append-to-container" (click)="toggle()">
+        <div class="append-to-wrapper" #appendToTmpWrapper>
+            <ng-template #defaultAppendToTemplate>
+                <input class="datepicker-input" [placeholder]="placeholder" [ngModel]="formattedDate" #datepickerInput />
+            </ng-template>
+    
+            <ng-template [ngTemplateOutletContext]="{ date: model, formattedDate: formattedDate, config: config }"
+                [ngTemplateOutlet]="appendToTemplate?.template || defaultAppendToTemplate">
+            </ng-template>
+        </div>
+    </div>
+    
+    <automate-datepicker-calendar-container [appendTo]="appendToTemplateWrapper" [container]="container" [placement]="placement"
+        *ngIf="isOpen && container !== 'body'">
+        <automate-datepicker-calendar [config]="config" [selectedDate]="model" (onDaySelected)="daySelected($event)">
+        </automate-datepicker-calendar>
+    </automate-datepicker-calendar-container>
+</div>

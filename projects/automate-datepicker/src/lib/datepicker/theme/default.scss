@@ -1,0 +1,21 @@
+$datepicker-input-border-color: #f0f0f0;
+$datepicker-input-font-color: rgb(67, 72, 76);
+
+$selected-item-background-color: rgba(1, 146, 200, 0.8);
+$selected-item-color: white;
+$hovered-item-background-color: rgb(217, 235, 254);
+$base-font-color: rgb(67, 72, 76);
+
+$calendar-container-background-color: rgb(38, 40, 41);
+
+.automate-datepicker.default {
+    .datepicker-input {
+        border: 1px solid $datepicker-input-border-color;
+        color: $datepicker-input-font-color;
+      }
+      
+      .datepicker-input:focus {
+        border: 1px solid $datepicker-input-border-color;
+      }
+      
+}

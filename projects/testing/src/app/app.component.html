@@ -1,0 +1,27 @@
+<div style="padding: 40px;text-align: center">
+  <automate-datepicker style="margin-top:50px" [config]="config" [ngModel]="value" [placement]="'right'" [container]="'body'" 
+    (ngModelChange)="dateChanged($event)">
+    
+  </automate-datepicker>
+
+  <div>
+    <automate-datepicker style="margin-top:50px" [container]="'body'" [config]="config" [ngModel]="value" [placement]="'right'" 
+      (ngModelChange)="dateChanged($event)">
+      <ng-template appendToTmp let-formattedDate="formattedDate">
+        <div class="input-group">
+          <input class="form-control" [ngModel]="formattedDate" />
+  
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">$</span>
+          </div>
+        </div>
+      </ng-template>
+    </automate-datepicker>
+  </div>
+
+  {{value | date : Constants.DEFAULT_DATE_FORMAT}}
+
+  <div (click)="showModal()">
+    Another itemsAnother itemsAnother itemsAnother itemsAnother itemsAnother itemsAnother items
+  </div>
+</div>

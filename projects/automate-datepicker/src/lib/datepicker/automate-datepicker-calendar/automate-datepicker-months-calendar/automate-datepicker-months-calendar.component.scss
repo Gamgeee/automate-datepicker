@@ -1,0 +1,34 @@
+@import "../../colors.scss";
+
+.months-container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.month {
+  display: inline-flex;
+  width: calc((100% / 3) - 0px);
+  margin: 7px 0px;
+  font-size: 13px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: rgb(104, 109, 115);
+  border-radius: 10%;
+  transition: all 0.5s;
+}
+
+.month:not(.selected):not(.disabled):hover {
+  background: $hovered-item-background-color;
+}
+
+.month.selected {
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+.month.disabled {
+  cursor: default;
+  opacity: 0.5;
+}

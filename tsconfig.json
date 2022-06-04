@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "automate-datepicker": [
+        "dist/automate-datepicker"
+      ],
+      "automate-datepicker/*": [
+        "dist/automate-datepicker/*"
+      ]
+    }
   }
 }

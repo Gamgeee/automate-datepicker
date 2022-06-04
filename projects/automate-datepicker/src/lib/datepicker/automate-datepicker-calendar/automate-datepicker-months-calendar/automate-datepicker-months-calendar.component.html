@@ -1,0 +1,6 @@
+<div class="months-container">
+    <div class="month" [class.selected]="month.isSelected" [class.disabled]="month.isDisabled" *ngFor="let month of currentYear.months"
+        (click)="selectMonth(month)">
+        {{month.monthLabel}}
+    </div>
+</div>

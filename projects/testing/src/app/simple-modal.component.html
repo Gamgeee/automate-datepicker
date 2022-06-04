@@ -1,0 +1,20 @@
+<div class="modal-body">
+    <div style="padding: 40px;text-align: center">
+        <automate-datepicker style="margin-top:50px" [ngModel]="value" [placement]="'right'" [container]="'body'"
+            [config]="config" (ngModelChange)="dateChanged($event)">
+            <!-- <button>Datepicker</button> -->
+        </automate-datepicker>
+
+        <div>
+            <automate-datepicker style="margin-top:50px" [ngModel]="value" [placement]="'right'" [config]="config"
+                (ngModelChange)="dateChanged($event)">
+            </automate-datepicker>
+        </div>
+
+        {{value | date : Constants.DEFAULT_DATE_FORMAT}}
+
+        <div>
+            Another itemsAnother itemsAnother itemsAnother itemsAnother itemsAnother itemsAnother items
+        </div>
+    </div>
+</div>

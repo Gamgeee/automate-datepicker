@@ -1,0 +1,11 @@
+.months-header {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.current-year {
+    display: inline-flex;
+    cursor: pointer;
+}

@@ -1,0 +1,13 @@
+<div class="months-header">
+    <div class="chevron-container" [class.disabled]="!isPrevYearEnabled" (click)="prevYear()">
+        <chevron [orientation]="'left'"></chevron>
+    </div>
+
+    <div class="current-year" (click)="openYearsCalendar()">
+        {{currentYear.yearTitle}}
+    </div>
+
+    <div class="chevron-container" [class.disabled]="!isNextYearEnabled" (click)="nextYear()">
+        <chevron [orientation]="'right'"></chevron>
+    </div>
+</div>
