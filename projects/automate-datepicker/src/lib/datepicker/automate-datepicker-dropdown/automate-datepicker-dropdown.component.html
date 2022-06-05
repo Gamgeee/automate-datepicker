@@ -1,5 +1,5 @@
 <div class="automate-datepicker-dropdown" [ngStyle]="positionStyle">
-    <automate-datepicker-calendar-container #container>
+    <automate-datepicker-calendar-container [theme]="theme" #container>
         <automate-datepicker-calendar [config]="config" [selectedDate]="selectedDate" (onDaySelected)="onDaySelected.emit($event)">
         </automate-datepicker-calendar>
     </automate-datepicker-calendar-container>

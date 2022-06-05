@@ -1,21 +1,99 @@
-$datepicker-input-border-color: #f0f0f0;
-$datepicker-input-font-color: rgb(67, 72, 76);
-
-$selected-item-background-color: rgba(1, 146, 200, 0.8);
-$selected-item-color: white;
-$hovered-item-background-color: rgb(217, 235, 254);
-$base-font-color: rgb(67, 72, 76);
+//Input
+$input-border-color: #ced4da;
+$input-font-color: rgb(67, 72, 76);
+//Container
+$container-background: white;
+$container-border-color: #f0f0f0;
+$container-box-shadow-color: rgba(235, 235, 235, 0.77);
+//Calendar Header
+$calendar-header-font-color: rgb(67, 72, 76);
+$chevron-color: rgb(1, 146, 200);
+//Calendar container
+$calendar-container-top-border-color: #f0f0f0;
+//Calendar common
+$calendar-item-color: rgb(104, 109, 115);
+$calendar-selected-item-background: rgba(1, 146, 200, 0.8);
+$calendar-item-hovered-background: rgb(217, 235, 254);
+$calendar-selected-item-color: white;
+//Days calendar
+$day-of-week-color: rgb(163, 168, 171);
+$today-background: rgb(217, 235, 254);
 
 $calendar-container-background-color: rgb(38, 40, 41);
 
 .automate-datepicker.default {
-    .datepicker-input {
-        border: 1px solid $datepicker-input-border-color;
-        color: $datepicker-input-font-color;
-      }
-      
-      .datepicker-input:focus {
-        border: 1px solid $datepicker-input-border-color;
-      }
-      
+  //Input
+  .datepicker-input {
+    border: 1px solid $input-border-color;
+    color: $input-font-color;
+  }
+
+  .datepicker-input:focus {
+    border: 1px solid $input-border-color;
+  }
+}
+
+//Container
+.automate-datepicker .date-picker-container.default,
+.automate-datepicker-dropdown .date-picker-container.default,
+{
+  background: $container-background;
+  border: 1px solid $container-border-color;
+  -webkit-box-shadow: 3px 3px 8px -2px $container-box-shadow-color;
+  box-shadow: 3px 3px 8px -2px $container-box-shadow-color;
+
+
+  //Calendar
+  //Calendar header
+  .header-container {
+    color: $calendar-header-font-color;
+  }
+
+  .chevron-container {
+    color: $chevron-color;
+  }
+
+  //Calendar container
+  .calendar-container {
+    border-top: 1px solid $calendar-container-top-border-color;
+  }
+
+  //Days calendar
+  .day-of-week {
+    color: $day-of-week-color;
+  }
+
+  .day {
+    color: $calendar-item-color;
+  }
+
+  .day:not(.selected):not(.disabled):hover {
+    background: $calendar-item-hovered-background;
+  }
+
+  .day.selected {
+    background: $calendar-selected-item-background;
+    color: $calendar-selected-item-color;
+  }
+
+  .day.today:not(.selected) {
+    background: $today-background;
+  }
+
+  //Month calendar
+  .month {
+    color: $calendar-item-color;
+  }
+
+  .month:not(.selected):not(.disabled):hover {
+    background: $calendar-item-hovered-background;
+  }
+  //Years calendar
+  .year {
+    color: $calendar-item-color;
+  }
+
+  .year:not(.selected):not(.disabled):hover {
+    background: $calendar-item-hovered-background;
+  }
 }

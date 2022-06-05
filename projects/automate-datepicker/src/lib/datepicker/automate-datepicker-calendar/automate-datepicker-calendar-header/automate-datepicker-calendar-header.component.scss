@@ -1,10 +1,7 @@
-@import '../../colors.scss';
-
 .header-container {
   height: 35px;
   display: flex;
   align-items: center;
-  color: $base-font-color;
   font-weight: bold;
 }
 
@@ -14,7 +11,6 @@
   width: 25px;
   height: 25px;
   margin: 0 0.5rem;
-  color: rgb(1, 146, 200);
 }
 
 .chevron-container.disabled {

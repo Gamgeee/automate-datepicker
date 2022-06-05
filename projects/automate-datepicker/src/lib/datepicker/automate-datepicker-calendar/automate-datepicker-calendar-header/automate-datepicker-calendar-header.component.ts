@@ -1,5 +1,4 @@
 import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
-import { Day } from '../../models/day';
 import { Month } from '../../models/month';
 import { Year } from '../../models/year';
 import { EAutomateDatepickerCalendarMode } from '../../enums/e-automate-datepicker-calendar-mode';

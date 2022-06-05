@@ -17,6 +17,7 @@ export class AppComponent {
   public value: Date;
 
   public config: DatePickerConfig = {
+    closeAfterSelect: false
   };
 
   constructor(private readonly modalService: BsModalService) {

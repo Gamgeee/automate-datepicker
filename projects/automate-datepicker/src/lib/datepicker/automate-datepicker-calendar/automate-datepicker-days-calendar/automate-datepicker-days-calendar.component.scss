@@ -1,5 +1,3 @@
-@import '../../colors.scss';
-
 .day-of-week,
 .day {
   width: calc((100% / 7) - 4px);
@@ -12,7 +10,6 @@
   justify-content: center;
   align-items: center;
   margin: 2px;
-  color: rgb(163, 168, 171);
   font-weight: 500;
   cursor: default;
 }
@@ -25,24 +22,11 @@
   justify-content: center;
   align-items: center;
   font-size: 13px;
-  color: rgb(104, 109, 115);
   border-radius: 50%;
   transition: all 0.5s;
   line-height: 30px;
-}
-
-.day:not(.selected):not(.disabled):hover{
-  background: $hovered-item-background-color;
-}
-
-.day.selected {
-  background: $selected-item-background-color;
-  color: $selected-item-color;
   box-sizing: border-box;
-}
-
-.day.today:not(.selected) {
-  background: $hovered-item-background-color;
+  border: 1px solid transparent;
 }
 
 .day.disabled {

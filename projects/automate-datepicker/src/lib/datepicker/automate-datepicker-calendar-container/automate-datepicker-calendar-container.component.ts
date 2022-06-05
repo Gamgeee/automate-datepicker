@@ -15,6 +15,9 @@ export class AutomateDatePickerCalendarContainerComponent {
     @Input()
     public container: '' | 'body' = '';
 
+    @Input()
+    public theme: string;
+
     @ViewChild('container')
     public containerElement: ElementRef;
 

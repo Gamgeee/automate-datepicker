@@ -1,6 +1,6 @@
 import {
   Component, forwardRef, Input, Output, EventEmitter, ComponentFactoryResolver, ApplicationRef, Injector, EmbeddedViewRef,
-  ComponentRef, ViewChild, ElementRef, OnDestroy, HostListener, ContentChild, TemplateRef
+  ComponentRef, ViewChild, ElementRef, OnDestroy, HostListener, ContentChild, TemplateRef, ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { AutomateDatePickerDropdownComponent } from './automate-datepicker-dropdown/automate-datepicker-dropdown.component';
@@ -20,8 +20,10 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR = {
 @Component({
   selector: 'automate-datepicker',
   templateUrl: './automate-datepicker.component.html',
-  styleUrls: ['./automate-datepicker.component.scss'],
-  providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
+  styleUrls: ['./automate-datepicker.component.scss', './theme/default.scss',
+    './theme/dark.scss', './theme/christmas.scss'],
+  providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR],
+  encapsulation: ViewEncapsulation.None
 })
 export class AutomateDatePickerComponent implements OnDestroy, ControlValueAccessor {
   @Input()
@@ -38,6 +40,9 @@ export class AutomateDatePickerComponent implements OnDestroy, ControlValueAcces
 
   @Input()
   public placement: 'left' | 'right' = 'left';
+
+  @Input()
+  public theme: 'default' | 'dark' | 'default christmas' | 'dark christmas' = 'default';
 
   @Input()
   public set config(value: DatePickerConfig) {
@@ -190,6 +195,7 @@ export class AutomateDatePickerComponent implements OnDestroy, ControlValueAcces
     const componentRef = factory.create(this._injector);
 
     componentRef.instance.placement = this.placement;
+    componentRef.instance.theme = this.theme;
     componentRef.instance.appendTo = this.appendToTemplateWrapper;
 
     componentRef.instance.config = this.config;

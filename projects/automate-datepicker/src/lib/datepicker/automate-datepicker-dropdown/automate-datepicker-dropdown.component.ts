@@ -16,6 +16,9 @@ export class AutomateDatePickerDropdownComponent implements OnInit, OnDestroy {
   public placement: 'left' | 'right' = 'left';
 
   @Input()
+  public theme: string;
+
+  @Input()
   public selectedDate: Date;
 
   @Input()

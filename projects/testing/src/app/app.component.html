@@ -1,16 +1,21 @@
 <div style="padding: 40px;text-align: center">
-  <automate-datepicker style="margin-top:50px" [config]="config" [ngModel]="value" [placement]="'right'" [container]="'body'" 
-    (ngModelChange)="dateChanged($event)">
-    
+  <automate-datepicker style="margin-top:50px" [theme]="'default christmas'" [config]="config" [ngModel]="value"
+    [placement]="'right'" [container]="'body'" (ngModelChange)="dateChanged($event)">
   </automate-datepicker>
 
   <div>
-    <automate-datepicker style="margin-top:50px" [container]="'body'" [config]="config" [ngModel]="value" [placement]="'right'" 
+    <automate-datepicker style="margin-top:50px" [config]="config" [ngModel]="value" [placement]="'left'"
       (ngModelChange)="dateChanged($event)">
+    </automate-datepicker>
+  </div>
+
+  <div>
+    <automate-datepicker style="margin-top:50px" [theme]="'dark'" [container]="'body'" [config]="config" [ngModel]="value"
+      [placement]="'left'" (ngModelChange)="dateChanged($event)">
       <ng-template appendToTmp let-formattedDate="formattedDate">
         <div class="input-group">
           <input class="form-control" [ngModel]="formattedDate" />
-  
+
           <div class="input-group-append">
             <span class="input-group-text" id="basic-addon2">$</span>
           </div>
@@ -19,9 +24,21 @@
     </automate-datepicker>
   </div>
 
-  {{value | date : Constants.DEFAULT_DATE_FORMAT}}
+  <div>
+    <automate-datepicker style="margin-top:50px" [theme]="'dark christmas'" [config]="config" [ngModel]="value"
+      [placement]="'right'" (ngModelChange)="dateChanged($event)">
+      <ng-template appendToTmp let-formattedDate="formattedDate">
+        <div class="input-group">
+          <input class="form-control" style="outline:none;box-shadow: none" [ngModel]="formattedDate" />
 
-  <div (click)="showModal()">
-    Another itemsAnother itemsAnother itemsAnother itemsAnother itemsAnother itemsAnother items
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">$</span>
+          </div>
+        </div>
+      </ng-template>
+    </automate-datepicker>
   </div>
+
+  <button (click)="showModal()">
+  </button>
 </div>
