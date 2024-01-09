@@ -53,7 +53,6 @@ export class AutomateDatePickerDropdownComponent implements OnInit, OnDestroy {
 
   private _updatePositionStyle(): void {
     this.positionStyle = this._getAppendToPositions();
-    console.log(this.positionStyle);
   }
 
   private _getAppendToPositions(): CSSStyleDeclaration {
