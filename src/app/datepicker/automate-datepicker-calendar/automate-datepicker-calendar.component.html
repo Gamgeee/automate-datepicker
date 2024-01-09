@@ -1,0 +1,21 @@
+<div class="calendar">
+    <automate-datepicker-calendar-header [mode]="mode" [currentYearsRange]="currentYearsRange" [currentYear]="currentYear"
+        [currentMonth]="currentMonth" [config]="config" (onYearSelected)="yearSelected($event)" (onMonthSelected)="monthSelected($event)"
+        (onOpenYearsCalendar)="openYearsCalendar()" (onOpenMonthsCalendar)="openMonthsCalendar()" (onNextYearsRange)="nextYearsRange()"
+        (onPrevYearsRange)="prevYearsRange()">
+    </automate-datepicker-calendar-header>
+
+    <div class="calendar-container">
+        <automate-datepicker-days-calendar *ngIf="mode === EAutomateDatepickerCalendarMode.Days" [currentMonth]="currentMonth"
+            (onDaySelected)="daySelected($event)">
+        </automate-datepicker-days-calendar>
+
+        <automate-datepicker-months-calendar *ngIf="mode === EAutomateDatepickerCalendarMode.Months" [currentYear]="currentYear"
+            (onMonthSelected)="monthSelected($event)" (onOpenDaysCalendar)="openDaysCalendar()">
+        </automate-datepicker-months-calendar>
+
+        <automate-datepicker-years-calendar *ngIf="mode === EAutomateDatepickerCalendarMode.Years" [currentYearsRange]="currentYearsRange"
+            (onYearSelected)="yearSelected($event)" (onOpenMonthsCalendar)="openMonthsCalendar()">
+        </automate-datepicker-years-calendar>
+    </div>
+</div>

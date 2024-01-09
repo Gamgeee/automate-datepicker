@@ -1,0 +1,13 @@
+<div class="years-header" *ngIf="currentYearsRange">
+    <div class="chevron-container" [class.disabled]="!isPrevRangeEnabled" (click)="prevRange()">
+        <chevron [orientation]="'left'"></chevron>
+    </div>
+
+    <div class="years-range">
+        {{currentYearsRange.startYear}}-{{currentYearsRange.endYear}}
+    </div>
+
+    <div class="chevron-container" [class.disabled]="!isNextRangeEnabled" (click)="nextRange()">
+        <chevron [orientation]="'right'"></chevron>
+    </div>
+</div>

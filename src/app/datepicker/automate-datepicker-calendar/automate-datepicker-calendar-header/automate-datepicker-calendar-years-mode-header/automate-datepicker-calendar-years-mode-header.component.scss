@@ -1,0 +1,11 @@
+.years-header {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.years-range {
+    display: inline-flex;
+    cursor: pointer;
+}

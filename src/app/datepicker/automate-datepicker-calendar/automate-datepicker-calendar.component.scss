@@ -1,0 +1,11 @@
+@import '../colors.scss';
+
+.calendar {
+}
+
+.calendar-container {
+  width: 15rem;
+  height: 15rem;
+  border-top: 1px solid $border-color;
+  color: $base-font-color;
+}

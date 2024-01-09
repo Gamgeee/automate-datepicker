@@ -1,0 +1,13 @@
+<div *ngIf="currentMonth">
+    <div>
+        <div class="day-of-week" *ngFor="let dayOfWeek of daysOfWeek">
+            {{dayOfWeek}}
+        </div>
+    </div>
+    <div class="week" *ngFor="let week of currentMonth.weeks">
+        <div class="day" *ngFor="let day of week.days" [class.selected]="day.isSelected" [class.disabled]="day.isDisabled"
+            [ngStyle]="day.hightLightedStyle" (click)="selectDay(day)">
+            {{day.dayNumber}}
+        </div>
+    </div>
+</div>

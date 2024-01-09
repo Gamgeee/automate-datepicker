@@ -1,0 +1,13 @@
+<div style="display:inline-flex" (click)="toggle()" (clickOutside)="clickOutside($event)">
+    <div #appendToWrapper>
+        <ng-content></ng-content>
+    </div>
+
+    <input class="datepicker-input" [placeholder]="placeholder" [ngModel]="formattedDate" *ngIf="showInput" #datepickerInput />
+</div>
+
+<automate-datepicker-calendar-container [appendTo]="datePickerInput" [container]="container" [placement]="placement"
+    *ngIf="isOpen && container !== 'body'">
+    <automate-datepicker-calendar [config]="config" [selectedDate]="model" (onDaySelected)="daySelected($event)">
+    </automate-datepicker-calendar>
+</automate-datepicker-calendar-container>

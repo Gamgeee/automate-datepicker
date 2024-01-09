@@ -1,0 +1,6 @@
+<div class="years-container" *ngIf="currentYearsRange">
+    <div class="year" [class.selected]="year.isSelected" [class.disabled]="year.isDisabled" *ngFor="let year of currentYearsRange.years"
+        (click)="selectYear(year)">
+        {{year.yearNumber}}
+    </div>
+</div>
