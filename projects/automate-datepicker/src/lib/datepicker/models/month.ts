@@ -1,7 +1,6 @@
 import { Week } from './week';
 import { Day } from './day';
 import { DatePickerConfig } from './datepicker-config';
-import { Constants } from '../../constants';
 import { DateHelper } from '../../date.helper';
 
 export class Month {

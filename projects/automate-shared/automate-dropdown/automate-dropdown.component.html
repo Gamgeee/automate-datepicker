@@ -2,7 +2,7 @@
   <ng-content select="[dropdown-header]"></ng-content>
 </div>
 
-<automate-dropdown-container *ngIf="container === '' && isOpen" [container]="container" [placement]="placement"
+<automate-dropdown-container *ngIf="container !== 'body' && isOpen" [container]="container" [placement]="placement"
   [appendTo]="appendToTmpWrapper" [bodyTemplate]="dropdownBodyTemplate">
 </automate-dropdown-container>
 

@@ -1,6 +1,11 @@
 <div class="automate-datepicker-dropdown" *ngIf="positionStyle" [ngStyle]="positionStyle">
     <automate-datepicker-calendar-container [theme]="theme" #container>
-        <automate-datepicker-calendar [config]="config" [selectedDate]="selectedDate" (onDaySelected)="onDaySelected.emit($event)">
+        <automate-datepicker-calendar [config]="config" [selectedDate]="selectedDate"
+            (onDaySelected)="onDaySelected.emit($event)" (onMonthChanged)="onMonthChanged.emit($event)"
+            (onYearChanged)="onYearChanged.emit($event)">
         </automate-datepicker-calendar>
+
+        <ng-template *ngIf="footerTemplate" [ngTemplateOutlet]="footerTemplate">
+        </ng-template>
     </automate-datepicker-calendar-container>
 </div>

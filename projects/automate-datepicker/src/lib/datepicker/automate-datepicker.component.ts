@@ -9,6 +9,7 @@ import { DatePickerConfig } from './models/datepicker-config';
 import { AppendToTemplateDirective } from '../directives/append-to-template.directive';
 import { AppendToTemplateContext } from '../directives/append-to-template-context';
 import { DateHelper } from '../date.helper';
+import { MonthChangedEvent } from './events/month-changed-event';
 
 // creates an ngModel accessor to be used in components providers
 const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR = {
@@ -59,6 +60,12 @@ export class AutomateDatePickerComponent implements OnDestroy, ControlValueAcces
   @Output()
   public close = new EventEmitter();
 
+  @Output()
+  public onMonthChanged = new EventEmitter<MonthChangedEvent>();
+
+  @Output()
+  public onYearChanged = new EventEmitter<number>();
+
   @ViewChild('appendToTmpWrapper')
   public appendToTemplateWrapper: ElementRef;
 
@@ -68,7 +75,8 @@ export class AutomateDatePickerComponent implements OnDestroy, ControlValueAcces
   @ContentChild(AppendToTemplateDirective)
   public appendToTemplate: AppendToTemplateDirective;
 
-
+  @ContentChild('footerTemplate')
+  public footerTemplate: TemplateRef<any>;
 
   // get value for component from private variable
   public get model(): Date { return this._model; }
@@ -197,10 +205,13 @@ export class AutomateDatePickerComponent implements OnDestroy, ControlValueAcces
     componentRef.instance.placement = this.placement;
     componentRef.instance.theme = this.theme;
     componentRef.instance.appendTo = this.appendToTemplateWrapper;
+    componentRef.instance.footerTemplate = this.footerTemplate;
 
     componentRef.instance.config = this.config;
     componentRef.instance.selectedDate = this.model;
     componentRef.instance.onDaySelected.subscribe((evt: Day) => this.daySelected(evt));
+    componentRef.instance.onMonthChanged.subscribe((evt: MonthChangedEvent) => this.onMonthChanged.emit(evt));
+    componentRef.instance.onYearChanged.subscribe((evt: number) => this.onYearChanged.emit(evt));
 
     return componentRef;
   }

@@ -1,10 +1,11 @@
-import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { Day } from '../models/day';
 import { Month } from '../models/month';
 import { Year } from '../models/year';
 import { EAutomateDatepickerCalendarMode } from '../enums/e-automate-datepicker-calendar-mode';
 import { YearsRange } from '../models/years-range';
 import { DatePickerConfig } from '../models/datepicker-config';
+import { MonthChangedEvent } from '../events/month-changed-event';
 
 @Component({
     selector: 'automate-datepicker-calendar',
@@ -37,6 +38,12 @@ export class AutomateDatePickerCalendarComponent {
 
     @Output()
     public onDaySelected = new EventEmitter<Day>();
+
+    @Output()
+    public onMonthChanged = new EventEmitter<MonthChangedEvent>();
+
+    @Output()
+    public onYearChanged = new EventEmitter<number>();
 
     public EAutomateDatepickerCalendarMode = EAutomateDatepickerCalendarMode;
 
@@ -116,18 +123,30 @@ export class AutomateDatePickerCalendarComponent {
     }
 
     private _setCurrentMonth(yearNumber: number, monthNumber: number): void {
+        const isChanged = !this.currentMonth || this.currentMonth.yearNumber !== yearNumber || this.currentMonth.monthNumber !== monthNumber;
+
         this.currentMonth = new Month(yearNumber, monthNumber, this._config);
 
         this.currentMonth.updateSelectedDay(this.selectedDate);
         this.currentMonth.updateDisabledState(this._config);
         this.currentMonth.updateHightLighted(this._config);
+
+        if (isChanged) {
+            this.onMonthChanged.emit({ year: this.currentMonth.yearNumber, monthNumber: this.currentMonth.monthNumber });
+        }
     }
 
     private _setCurrentYear(yearNumber: number): void {
+        const isChanged = !this.currentYear || this.currentYear.yearNumber !== yearNumber;
+
         this.currentYear = new Year(yearNumber, this._config, true, false);
         this.currentYear.updateSelectedMonth(this._currentYearNumber, this._currentMonthNumber);
         this.currentYear.updateIsSelected(this._currentYearNumber);
         this.currentYear.updateDisabledState(this._config);
+
+        if (isChanged) {
+            this.onYearChanged.emit(this.currentYear.yearNumber);
+        }
     }
 
     private _createYearsRangeByCurrentYear(): void {

@@ -1,7 +1,8 @@
-import { Component, Input, ElementRef, ViewChild, Output, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, Output, EventEmitter, OnDestroy, OnInit, TemplateRef, ContentChild } from '@angular/core';
 import { AutomateDatePickerCalendarContainerComponent } from '../automate-datepicker-calendar-container/automate-datepicker-calendar-container.component';
 import { Day } from '../models/day';
 import { DatePickerConfig } from '../models/datepicker-config';
+import { MonthChangedEvent } from '../events/month-changed-event';
 
 @Component({
   selector: 'automate-datepicker-dropdown',
@@ -24,8 +25,17 @@ export class AutomateDatePickerDropdownComponent implements OnInit, OnDestroy {
   @Input()
   public config: DatePickerConfig;
 
+  @ContentChild('footerTemplate')
+  public footerTemplate: TemplateRef<any>;
+
   @Output()
   public onDaySelected = new EventEmitter<Day>();
+
+  @Output()
+  public onMonthChanged = new EventEmitter<MonthChangedEvent>();
+
+  @Output()
+  public onYearChanged = new EventEmitter<number>();
 
   @ViewChild('container')
   public container: AutomateDatePickerCalendarContainerComponent;

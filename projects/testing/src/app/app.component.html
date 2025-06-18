@@ -4,7 +4,8 @@
     <automate-timepicker [id]="'1'" [(ngModel)]="value" [config]="timePickerConfig"></automate-timepicker>
 
     <div>
-      <automate-timepicker [id]="'2'" [container]="'body'" [(ngModel)]="value" [config]="timePickerConfig"></automate-timepicker>
+      <automate-timepicker [id]="'2'" [container]="'body'" [(ngModel)]="value"
+        [config]="timePickerConfig"></automate-timepicker>
     </div>
 
     {{value | date: 'MM/dd/yyyy hh:mm a'}}
@@ -12,12 +13,24 @@
 
   <h4>Date Picker</h4>
   <automate-datepicker style="margin-top:50px" [theme]="'default christmas'" [config]="config" [ngModel]="value"
-    [placement]="'right'" [container]="'body'" (ngModelChange)="dateChanged($event)">
+    [placement]="'left'" [container]="'body'" (ngModelChange)="dateChanged($event)" (onMonthChanged)="log($event)"
+    (onYearChanged)="log($event)">
+    <ng-template #footerTemplate>
+      <div style="border: 1px solid red; width: 3rem; height: 2rem;">
+
+      </div>
+    </ng-template>
   </automate-datepicker>
 
   <div style="width: 400px">
     <automate-datepicker style="margin-top:50px;width:100%" [config]="config" [ngModel]="value" [placement]="'left'"
       [container]="'body'" (ngModelChange)="dateChanged($event)">
+
+          <ng-template #footerTemplate>
+      <div style="border: 1px solid red; width: 3rem; height: 2rem;">
+
+      </div>
+    </ng-template>
     </automate-datepicker>
   </div>
 
