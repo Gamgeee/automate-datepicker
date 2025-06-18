@@ -35,7 +35,7 @@ export class DatePickerConfig {
             hightLightedDates: existing.hightLightedDates,
             maxDate: existing.maxDate,
             minDate: existing.minDate,
-            startView: existing.startView,
+            startView: existing.startView || EAutomateDatepickerCalendarMode.Days,
             closeAfterSelect: existing.closeAfterSelect === false ? false : true,
             showTodayDay: existing.showTodayDay === false ? false : true,
             daysOfWeek: existing.daysOfWeek || ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
@@ -45,5 +45,5 @@ export class DatePickerConfig {
 
 export class HightLightedDateConfig {
     public date: Date;
-    public style?: Partial<CSSStyleDeclaration>;
+    public style: Partial<CSSStyleDeclaration>;
 }

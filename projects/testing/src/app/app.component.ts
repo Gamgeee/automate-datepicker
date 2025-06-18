@@ -3,6 +3,7 @@ import { Constants } from 'projects/automate-datepicker/src/lib/constants';
 import { DatePickerConfig } from 'projects/automate-datepicker/src/lib/datepicker/models/datepicker-config';
 import { BsModalService } from 'ngx-bootstrap';
 import { SimpleModalComponent } from './simple-modal.component';
+import { TimePickerConfig } from 'projects/automate-timepicker/src/public_api';
 
 @Component({
   selector: 'app-root',
@@ -17,10 +18,16 @@ export class AppComponent {
   public value: Date;
 
   public config: DatePickerConfig = {
+    closeAfterSelect: false,
+    minDate: new Date()
+  };
+
+  public timePickerConfig: TimePickerConfig = {
     closeAfterSelect: false
   };
 
   constructor(private readonly modalService: BsModalService) {
+  
   }
 
   public showModal(): void {

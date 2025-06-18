@@ -1,0 +1,12 @@
+<div class="timepicker-header">
+  <div class="hours-and-minutes-container">
+    <span class="hours" (click)="hoursClick()">{{selectedTime.formattedHours}}</span>
+    <span>{{selectedTime.timeSeparator}}</span>
+    <span class="minutes" (click)="minutesClick()">{{selectedTime.formattedMinutes}}</span>
+  </div>
+
+  <div class="meridiem">
+    <span [class.selected]="selectedTime.isBeforeNoon" (click)="meridiemClick(false)">AM</span>
+    <span [class.selected]="selectedTime.isAfterNoon" (click)="meridiemClick(true)">PM</span>
+  </div>
+</div>

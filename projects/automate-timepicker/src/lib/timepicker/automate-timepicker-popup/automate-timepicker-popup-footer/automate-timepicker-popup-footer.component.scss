@@ -1,0 +1,21 @@
+.timepicker-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+$buttonBorderRadius: 4px;
+
+button {
+  min-width: 4rem;
+  padding: 0.25rem 0.5rem;
+  border: none;
+  border-radius: $buttonBorderRadius;
+  font-weight: 100;
+  font-size: 0.9rem;
+
+  &:first-child {
+    margin-right: 0.5rem;
+  }
+}

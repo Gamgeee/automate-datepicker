@@ -1,0 +1,16 @@
+<div class="automate-timepicker-popup" [ngClass]="theme">
+  <automate-timepicker-popup-header [selectedTime]="selectedTime" [config]="config"
+    (onHoursClick)="clockComponent.switchToHoursClock()" (onMinutesClick)="clockComponent.switchToMinutesClock()"
+    (onMeridiemClick)="clockComponent.switchMeridiem($event)">
+  </automate-timepicker-popup-header>
+
+  <automate-timepicker-clock #clock [theme]="theme" [config]="config" [selectedTime]="selectedTime"
+    (onTimeSelected)="onTimeSelected.emit($event)">
+  </automate-timepicker-clock>
+
+  <automate-timepicker-popup-footer [selectedTime]="selectedTime" [config]="config" (onSaveClick)="onSaveClick.emit()"
+    (onCancelClick)="onCancelClick.emit()">
+  </automate-timepicker-popup-footer>
+
+  <automate-snowflakes *ngIf="theme.includes('christmas')"></automate-snowflakes>
+</div>

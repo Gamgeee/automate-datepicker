@@ -65,14 +65,14 @@ export class AutomateDatePickerDropdownComponent implements OnInit, OnDestroy {
   private _getTop(): string {
     const positions = this._appendToElement.getBoundingClientRect();
 
-    return `${positions.top + this._appendToElement.offsetHeight}px`;
+    return `${positions.top + this._appendToElement.offsetHeight + window.pageYOffset}px`;
   }
 
   private _getLeft(): string {
     const positions = this._appendToElement.getBoundingClientRect();
 
     if (this.placement === 'left') {
-      return `${positions.left}px`;
+      return `${positions.left + window.pageXOffset}px`;
     }
 
     if (this.placement === 'right') {
@@ -80,7 +80,7 @@ export class AutomateDatePickerDropdownComponent implements OnInit, OnDestroy {
 
       const appendToPosition = this._appendToElement.getBoundingClientRect();
 
-      return `${appendToPosition.right - containerElement.offsetWidth}px`;
+      return `${appendToPosition.right - containerElement.offsetWidth + window.pageXOffset}px`;
     }
 
     throw new Error('Placement not supported.');

@@ -1,18 +1,30 @@
-<div style="padding: 40px;text-align: center">
+<div class="main-block">
+  <h4>Time Picker</h4>
+  <div>
+    <automate-timepicker [id]="'1'" [(ngModel)]="value" [config]="timePickerConfig"></automate-timepicker>
+
+    <div>
+      <automate-timepicker [id]="'2'" [container]="'body'" [(ngModel)]="value" [config]="timePickerConfig"></automate-timepicker>
+    </div>
+
+    {{value | date: 'MM/dd/yyyy hh:mm a'}}
+  </div>
+
+  <h4>Date Picker</h4>
   <automate-datepicker style="margin-top:50px" [theme]="'default christmas'" [config]="config" [ngModel]="value"
     [placement]="'right'" [container]="'body'" (ngModelChange)="dateChanged($event)">
   </automate-datepicker>
 
-  <div>
-    <automate-datepicker style="margin-top:50px" [config]="config" [ngModel]="value" [placement]="'left'"
-      (ngModelChange)="dateChanged($event)">
+  <div style="width: 400px">
+    <automate-datepicker style="margin-top:50px;width:100%" [config]="config" [ngModel]="value" [placement]="'left'"
+      [container]="'body'" (ngModelChange)="dateChanged($event)">
     </automate-datepicker>
   </div>
 
   <div>
-    <automate-datepicker style="margin-top:50px" [theme]="'dark'" [container]="'body'" [config]="config" [ngModel]="value"
-      [placement]="'left'" (ngModelChange)="dateChanged($event)">
-      <ng-template appendToTmp let-formattedDate="formattedDate">
+    <automate-datepicker style="margin-top:50px" [theme]="'dark christmas'" [container]="'body'" [config]="config"
+      [ngModel]="value" [placement]="'left'" (ngModelChange)="dateChanged($event)">
+      <!-- <ng-template appendToTmp let-formattedDate="formattedDate">
         <div class="input-group">
           <input class="form-control" [ngModel]="formattedDate" />
 
@@ -20,25 +32,49 @@
             <span class="input-group-text" id="basic-addon2">$</span>
           </div>
         </div>
-      </ng-template>
+      </ng-template> -->
     </automate-datepicker>
   </div>
 
   <div>
-    <automate-datepicker style="margin-top:50px" [theme]="'dark christmas'" [config]="config" [ngModel]="value"
-      [placement]="'right'" (ngModelChange)="dateChanged($event)">
-      <ng-template appendToTmp let-formattedDate="formattedDate">
-        <div class="input-group">
-          <input class="form-control" style="outline:none;box-shadow: none" [ngModel]="formattedDate" />
-
-          <div class="input-group-append">
-            <span class="input-group-text" id="basic-addon2">$</span>
-          </div>
-        </div>
-      </ng-template>
+    <automate-datepicker style="margin-top:50px" [theme]="'dark'" [config]="config" [ngModel]="value"
+      [placement]="'left'" [container]="'body'" (ngModelChange)="dateChanged($event)">
     </automate-datepicker>
   </div>
 
-  <button (click)="showModal()">
-  </button>
+  <!-- <div class="scroll">
+    <div class="scroll-inner">
+      <div>
+        <automate-datepicker style="margin-top:50px" [theme]="'dark christmas'" [config]="config" [ngModel]="value"
+          [placement]="'right'" (ngModelChange)="dateChanged($event)">
+          <ng-template appendToTmp let-formattedDate="formattedDate">
+            <div class="input-group">
+              <input class="form-control" style="outline:none;box-shadow: none" [ngModel]="formattedDate" />
+
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">$</span>
+              </div>
+            </div>
+          </ng-template>
+        </automate-datepicker>
+      </div>
+
+      <div>
+        <automate-datepicker style="margin-top:50px" [theme]="'dark christmas'" [config]="config" [ngModel]="value"
+          [container]="'body'" [placement]="'right'" (ngModelChange)="dateChanged($event)">
+          <ng-template appendToTmp let-formattedDate="formattedDate">
+            <div class="input-group">
+              <input class="form-control" style="outline:none;box-shadow: none" [ngModel]="formattedDate" />
+
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">$</span>
+              </div>
+            </div>
+          </ng-template>
+        </automate-datepicker>
+      </div>
+    </div>
+  </div> -->
+
+  <canvas id="goodCanvas1" width="400" height="100" aria-label="Hello ARIA World" role="img"></canvas>
 </div>

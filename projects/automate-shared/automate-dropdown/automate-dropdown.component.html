@@ -1,0 +1,11 @@
+<div class="append-to-wrapper" (click)="toggle()" #appendToTmpWrapper>
+  <ng-content select="[dropdown-header]"></ng-content>
+</div>
+
+<automate-dropdown-container *ngIf="container === '' && isOpen" [container]="container" [placement]="placement"
+  [appendTo]="appendToTmpWrapper" [bodyTemplate]="dropdownBodyTemplate">
+</automate-dropdown-container>
+
+<ng-template #dropdownBodyTemplate>
+  <ng-content select="[dropdown-body]"></ng-content>
+</ng-template>

@@ -137,6 +137,76 @@
           }
         }
       }
+    },
+    "automate-timepicker": {
+      "root": "projects/automate-timepicker",
+      "sourceRoot": "projects/automate-timepicker/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/automate-timepicker/tsconfig.lib.json",
+            "project": "projects/automate-timepicker/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/automate-timepicker/src/test.ts",
+            "tsConfig": "projects/automate-timepicker/tsconfig.spec.json",
+            "karmaConfig": "projects/automate-timepicker/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/automate-timepicker/tsconfig.lib.json",
+              "projects/automate-timepicker/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "automate-dropdown": {
+      "root": "projects/automate-dropdown",
+      "sourceRoot": "projects/automate-dropdown/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/automate-dropdown/tsconfig.lib.json",
+            "project": "projects/automate-dropdown/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/automate-dropdown/src/test.ts",
+            "tsConfig": "projects/automate-dropdown/tsconfig.spec.json",
+            "karmaConfig": "projects/automate-dropdown/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/automate-dropdown/tsconfig.lib.json",
+              "projects/automate-dropdown/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "testing"

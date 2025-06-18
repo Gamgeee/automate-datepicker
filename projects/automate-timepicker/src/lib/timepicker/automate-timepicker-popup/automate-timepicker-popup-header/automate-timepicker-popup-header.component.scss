@@ -1,0 +1,39 @@
+.timepicker-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 0.5rem;
+}
+
+.hours-and-minutes-container {
+  display: flex;
+  font-size: 30px;
+  font-weight: 100;
+  line-height: 2.25rem;
+}
+
+.hours,
+.minutes {
+  cursor: pointer;
+}
+
+.hours:hover,
+.minutes:hover {
+  opacity: 0.7;
+  transition: all 0.5s;
+}
+
+.meridiem {
+  display: flex;
+
+  span {
+    padding: 0.25rem 0.35rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    line-height: 1.25rem;
+    font-weight: 100;
+    &.selected {
+      border-radius: 4px;
+    }
+  }
+}

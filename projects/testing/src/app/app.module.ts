@@ -7,6 +7,7 @@ import { AutomateDatePickerModule } from 'projects/automate-datepicker/src/lib/a
 import { ModalModule } from 'ngx-bootstrap';
 import { SimpleModalComponent } from './simple-modal.component';
 import { CommonModule } from '@angular/common';
+import { AutomateTimepickerModule } from 'projects/automate-timepicker/src/public_api';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { CommonModule } from '@angular/common';
     BrowserModule,
     FormsModule,
     AutomateDatePickerModule,
+    AutomateTimepickerModule,
     ModalModule.forRoot(),
   ],
   providers: [],

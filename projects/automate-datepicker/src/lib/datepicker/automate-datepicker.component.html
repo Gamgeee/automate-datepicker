@@ -2,7 +2,7 @@
     <div class="append-to-container" (click)="toggle()">
         <div class="append-to-wrapper" #appendToTmpWrapper>
             <ng-template #defaultAppendToTemplate>
-                <input class="datepicker-input" [placeholder]="placeholder" [ngModel]="formattedDate" #datepickerInput />
+                <input [id]="id" class="datepicker-input" [placeholder]="placeholder" [ngModel]="formattedDate" #datepickerInput />
             </ng-template>
 
             <ng-template [ngTemplateOutletContext]="{ date: model, formattedDate: formattedDate, config: config }"

@@ -1,0 +1,57 @@
+//Input
+$input-border-color: #ced4da;
+$input-font-color: rgb(67, 72, 76);
+//Container
+$container-background: rgb(38, 40, 41);
+$container-border-color: rgb(38, 40, 41);
+$container-box-shadow-color: rgb(38, 40, 41);
+//Calendar Header
+$calendar-header-font-color: white;
+$chevron-color: white;
+//Calendar container
+$calendar-container-top-border-color: #404040;
+//Calendar common
+$calendar-item-color: white;
+$calendar-selected-item-background: #03a9f4;
+$calendar-item-hovered-background: initial;
+$calendar-item-hovered-border: #505050;
+$calendar-selected-item-color: white;
+//Days calendar
+$day-of-week-color: #484848;
+$today-background: initial;
+$today-border-color: white;
+
+.automate-timepicker.dark {
+  //Input
+  .timepicker-input {
+    border: 1px solid $input-border-color;
+    color: $input-font-color;
+  }
+
+  .timepicker-input:focus {
+    border: 1px solid $input-border-color;
+  }
+}
+
+//Container
+.time-picker-container.dark {
+  background: $container-background;
+  border: 1px solid $container-border-color;
+  -webkit-box-shadow: 3px 3px 8px -2px $container-box-shadow-color;
+  box-shadow: 3px 3px 8px -2px $container-box-shadow-color;
+
+  //Calendar
+  //Calendar header
+  .header-container {
+    color: $calendar-header-font-color;
+  }
+
+  .chevron-container {
+    color: $chevron-color;
+  }
+
+  //Calendar container
+  .calendar-container {
+    border-top: 1px solid $calendar-container-top-border-color;
+  }
+}

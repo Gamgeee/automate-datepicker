@@ -1,0 +1,17 @@
+.main-block {
+    /* height: 1000px; */
+    width: 1000px;
+    padding: 40px;
+    margin-left: 20rem;
+}
+
+.scroll {
+    overflow: auto;
+    width: 500px;
+    height: 500px;
+}
+
+.scroll-inner {
+    height: 1000px;
+    width: 1000px;
+}

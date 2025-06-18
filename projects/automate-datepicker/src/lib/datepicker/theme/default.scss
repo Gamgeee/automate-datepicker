@@ -35,13 +35,11 @@ $calendar-container-background-color: rgb(38, 40, 41);
 
 //Container
 .automate-datepicker .date-picker-container.default,
-.automate-datepicker-dropdown .date-picker-container.default,
-{
+.automate-datepicker-dropdown .date-picker-container.default {
   background: $container-background;
   border: 1px solid $container-border-color;
   -webkit-box-shadow: 3px 3px 8px -2px $container-box-shadow-color;
   box-shadow: 3px 3px 8px -2px $container-box-shadow-color;
-
 
   //Calendar
   //Calendar header

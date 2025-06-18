@@ -1,0 +1,12 @@
+$container-background: #ffffff;
+$container-border-color: #f0f0f0;
+$container-box-shadow-color: #ebebebc4;
+
+.automate-dropdown-container {
+  position: absolute;
+  z-index: 1060;
+  background: white;
+  border: 1px solid $container-border-color;
+  -webkit-box-shadow: 3px 3px 8px -2px $container-box-shadow-color;
+  box-shadow: 3px 3px 8px -2px $container-box-shadow-color;
+}

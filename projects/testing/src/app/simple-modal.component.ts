@@ -4,9 +4,7 @@ import { DatePickerConfig } from 'projects/automate-datepicker/src/lib/datepicke
 import { BsModalService } from 'ngx-bootstrap';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+    templateUrl: './simple-modal.component.html'
 })
 export class SimpleModalComponent {
     title = 'automate-datepicker';

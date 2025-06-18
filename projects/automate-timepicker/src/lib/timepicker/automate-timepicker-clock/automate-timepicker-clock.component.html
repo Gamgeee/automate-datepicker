@@ -1,0 +1,11 @@
+<div class="clock" [ngClass]="theme">
+  <div class="clock-container">
+    <automate-timepicker-hours-clock *ngIf="clockMode === EClockMode.Hours" [selectedTime]="selectedTime"
+      [config]="config" (onHourSelected)="selectHour($event)">
+    </automate-timepicker-hours-clock>
+
+    <automate-timepicker-minutes-clock *ngIf="clockMode === EClockMode.Minutes" [selectedTime]="selectedTime"
+      [config]="config" (onMinutesSelected)="selectMinutes($event)">
+    </automate-timepicker-minutes-clock>
+  </div>
+</div>

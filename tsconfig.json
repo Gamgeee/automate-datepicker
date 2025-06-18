@@ -24,6 +24,18 @@
       ],
       "automate-datepicker/*": [
         "dist/automate-datepicker/*"
+      ],
+      "automate-timepicker": [
+        "dist/automate-timepicker"
+      ],
+      "automate-timepicker/*": [
+        "dist/automate-timepicker/*"
+      ],
+      "automate-dropdown": [
+        "dist/automate-dropdown"
+      ],
+      "automate-dropdown/*": [
+        "dist/automate-dropdown/*"
       ]
     }
   }

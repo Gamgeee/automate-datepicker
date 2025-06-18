@@ -55,9 +55,9 @@ export class AutomateDatePickerComponent implements OnDestroy, ControlValueAcces
   }
 
   @Output()
-  public onShown = new EventEmitter();
+  public open = new EventEmitter();
   @Output()
-  public onClose = new EventEmitter();
+  public close = new EventEmitter();
 
   @ViewChild('appendToTmpWrapper')
   public appendToTemplateWrapper: ElementRef;
@@ -158,7 +158,7 @@ export class AutomateDatePickerComponent implements OnDestroy, ControlValueAcces
       this._appendComponentToBody(this._dropdownComponentRef);
     }
 
-    this.onShown.emit();
+    this.open.emit();
   }
 
   public hide(): void {
@@ -172,7 +172,7 @@ export class AutomateDatePickerComponent implements OnDestroy, ControlValueAcces
 
     this.onTouched();
 
-    this.onClose.emit();
+    this.close.emit();
   }
 
   public toggle(): void {

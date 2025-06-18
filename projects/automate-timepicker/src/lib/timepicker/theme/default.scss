@@ -1,0 +1,93 @@
+//Input
+$input-border-color: #ced4da;
+$input-font-color: #43484c;
+//Container
+$container-background: #ffffff;
+$container-border-color: #f0f0f0;
+$container-box-shadow-color: #ebebebc4;
+//Clock container
+$clock-container-border-top-color: #f0f0f0;
+//Clock header
+$meridiem-selected-color: #ffffff;
+$meridiem-selected-background: #0090f0;
+//Clock circle
+$clock-circle-background: #ededed;
+$clock-center-background: #0090f0;
+$clock-hand-background: #0090f0;
+$clock-btn-selected-color: #ffffff;
+$clock-btn-selected-background: #0090f0;
+//Clock footer
+$clock-footer-border-top-color: #f0f0f0;
+$clock-footer-button-color: #ffffff;
+$clock-footer-button-cancel-background: #f34242;
+$clock-footer-button-save-background: #04aeb4;
+
+.automate-timepicker.default {
+  //Input
+  .timepicker-input {
+    border: 1px solid $input-border-color;
+    color: $input-font-color;
+  }
+
+  .timepicker-input:focus {
+    border: 1px solid $input-border-color;
+  }
+}
+
+//Container
+.automate-timepicker.default,
+.clock.default {
+  //Clock container
+  .clock-container {
+    border-top: 1px solid $clock-container-border-top-color;
+  }
+
+  //Clock header
+  .meridiem {
+    span {
+      &.selected {
+        color: $meridiem-selected-color;
+        background-color: $meridiem-selected-background;
+      }
+    }
+  }
+
+  //Clock circle
+  .clock-circle {
+    background-color: $clock-circle-background;
+  }
+
+  .clock-center {
+    background-color: $clock-center-background;
+  }
+
+  .clock-hand {
+    background-color: $clock-hand-background;
+  }
+
+  .clock-btn.selected {
+    color: $clock-btn-selected-color;
+    background-color: $clock-btn-selected-background;
+  }
+
+  .clock-dot.selected {
+    background-color: $clock-btn-selected-background;
+  }
+
+  //Clock footer
+  .timepicker-footer {
+    border-top: 1px solid $clock-footer-border-top-color;
+
+    button {
+      color: $clock-footer-button-color;
+
+      &.cancel-btn {
+        background-color: $clock-footer-button-cancel-background;
+      }
+    
+      &.save-btn {
+        background-color: $clock-footer-button-save-background;
+      }
+    }
+  }
+}
