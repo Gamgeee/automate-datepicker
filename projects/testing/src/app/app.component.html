@@ -12,7 +12,7 @@
   </div>
 
   <h4>Date Picker</h4>
-  <automate-datepicker style="margin-top:50px" [theme]="'default christmas'" [config]="config" [ngModel]="value"
+  <automate-datepicker style="margin-top:50px" [theme]="'default christmas'" [config]="config" [(ngModel)]="value"
     [placement]="'left'" [container]="'body'" (ngModelChange)="dateChanged($event)" (onMonthChanged)="log($event)"
     (onYearChanged)="log($event)">
     <ng-template #footerTemplate>

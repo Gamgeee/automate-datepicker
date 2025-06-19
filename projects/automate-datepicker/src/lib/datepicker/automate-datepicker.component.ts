@@ -138,10 +138,8 @@ export class AutomateDatePickerComponent implements OnDestroy, ControlValueAcces
     this.disabled = isDisabled;
   }
 
-
-
   public daySelected(day: Day): void {
-    const date = this.model || new Date();
+    const date = this.model ? DateHelper.copy(this.model) : new Date();
     date.setFullYear(day.dayDate.getFullYear());
     date.setMonth(day.dayDate.getMonth());
     date.setDate(day.dayDate.getDate());

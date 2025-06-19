@@ -15,17 +15,36 @@ export class AppComponent {
 
   public value: Date;
 
-  public config: DatePickerConfig = {
-    closeAfterSelect: false,
+  public config: DatePickerConfig = new DatePickerConfig({
+    closeAfterSelect: true,
     minDate: new Date()
-  };
+  });
 
   public timePickerConfig: TimePickerConfig = {
     closeAfterSelect: false
   };
 
   constructor() {
+    setTimeout(() => {
+      this.config.update({
+        hightLightedDates: [{ date: new Date(2025, 5, 25), style: { background: 'red' } }]
+      });
 
+      
+    }, 3000);
+
+
+    setTimeout(() => {
+      this.config.update({
+        minDate: new Date(2025, 5, 23)
+      });
+    }, 8000);
+
+    setTimeout(() => {
+      this.config.update({
+        disabledDates: [new Date(2025, 5, 27)]
+      });
+    }, 8000);
   }
 
   public log(e: any): void {
@@ -33,7 +52,7 @@ export class AppComponent {
   }
 
   public dateChanged(value: Date): void {
-    this.value = value;
-    console.log(value);
+    // this.value = value;
+    console.log(this.value);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
 import { Day } from '../models/day';
 import { Month } from '../models/month';
 import { Year } from '../models/year';
@@ -6,13 +6,14 @@ import { EAutomateDatepickerCalendarMode } from '../enums/e-automate-datepicker-
 import { YearsRange } from '../models/years-range';
 import { DatePickerConfig } from '../models/datepicker-config';
 import { MonthChangedEvent } from '../events/month-changed-event';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'automate-datepicker-calendar',
     templateUrl: './automate-datepicker-calendar.component.html',
     styleUrls: ['./automate-datepicker-calendar.component.scss']
 })
-export class AutomateDatePickerCalendarComponent {
+export class AutomateDatePickerCalendarComponent implements OnDestroy {
     @Input()
     public set selectedDate(value: Date) {
         this._selectedDate = value;
@@ -31,6 +32,8 @@ export class AutomateDatePickerCalendarComponent {
         this._updateDisabledState();
         this._updateCalendarMode();
         this._updateHightLightedState();
+
+        this._subscribeOnConfigUpdated();
     }
     public get config(): DatePickerConfig {
         return this._config;
@@ -67,7 +70,15 @@ export class AutomateDatePickerCalendarComponent {
 
     private readonly _YEARS_AMOUNT_ON_CALENDAR = 16;
 
+    private _configUpdatedSub: Subscription;
+
     constructor() { }
+
+    public ngOnDestroy(): void {
+        if (this._configUpdatedSub) {
+            this._configUpdatedSub.unsubscribe();
+        }
+    }
 
     public openDaysCalendar(): void {
         this._mode = EAutomateDatepickerCalendarMode.Days;
@@ -204,5 +215,17 @@ export class AutomateDatePickerCalendarComponent {
         } else if (this._config.startView === EAutomateDatepickerCalendarMode.Years) {
             this.openYearsCalendar();
         }
+    }
+
+    private _subscribeOnConfigUpdated(): void {
+        if (this._configUpdatedSub) {
+            this._configUpdatedSub.unsubscribe();
+        }
+
+        this._configUpdatedSub = this._config.onUpdated.subscribe(() => {
+            this._updateDisabledState();
+            this._updateHightLightedState();
+            this._updateCalendarMode();
+        });
     }
 }

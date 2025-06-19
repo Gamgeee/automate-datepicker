@@ -47,4 +47,16 @@ export class DateHelper {
 
         return pipe.transform(self, format);
     }
+
+
+    public static copy(target: Date): Date {
+        const cloned = new Date(target.getTime()) as Date;
+
+        // Copy own properties (including custom ones)
+        for (const key of Object.keys(target)) {
+            (cloned as any)[key] = (target as any)[key];
+        }
+
+        return cloned;
+    }
 }
