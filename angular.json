@@ -23,8 +23,7 @@
               "projects/testing/src/assets"
             ],
             "styles": [
-              "projects/testing/src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "projects/testing/src/styles.css"
             ],
             "scripts": []
           },
