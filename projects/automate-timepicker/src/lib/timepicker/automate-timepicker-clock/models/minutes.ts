@@ -1,5 +1,5 @@
-import { DatePipe } from '@angular/common';
 import { AutomateTimePickerTime } from '../../models/automate-timepicker-time';
+import { getDatePipe } from '../../utils/date-pipe-cache';
 import { TimePickerConfig } from '../../models/timepicker-config';
 import { ClockItem } from './clock-item.base';
 
@@ -7,13 +7,13 @@ export class Minutes extends ClockItem {
   public static MINUTES_INTERVAL = 1;
   public static MINUTES_DISPLAY_INTERVAL = 5;
 
-  public get formattedMinutes(): string | null { return this._formattedMinutes; }
+  public get formattedMinutes(): string { return this._formattedMinutes; }
   public get minutes(): number { return this._minutes; }
   public get isSelected(): boolean { return this._isSelected; }
 
   public get showMinutes(): boolean { return this._minutes % Minutes.MINUTES_DISPLAY_INTERVAL === 0; }
 
-  private _formattedMinutes: string | null = null;
+  private _formattedMinutes: string = '';
   private _minutes: number;
   private _isSelected: boolean = false;
 
@@ -50,7 +50,7 @@ export class Minutes extends ClockItem {
       throw new Error('Config should be provided.');
     }
 
-    const dateTimePipe = new DatePipe(this._config.locale ?? 'en-US');
+    const dateTimePipe = getDatePipe(this._config.locale ?? 'en-US');
 
     const dateTime = new Date();
     dateTime.setMinutes(this._minutes);

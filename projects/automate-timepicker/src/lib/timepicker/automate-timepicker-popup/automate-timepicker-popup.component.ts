@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewEncapsulation, ViewChild, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewEncapsulation, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AutomateTimePickerClockComponent } from '../automate-timepicker-clock/automate-timepicker-clock.component';
 import { AutomateTimePickerPopupHeaderComponent } from './automate-timepicker-popup-header/automate-timepicker-popup-header.component';
@@ -16,7 +16,6 @@ import { EClockMode } from '../enums/e-clock-mode';
     AutomateTimePickerClockComponent,
     AutomateTimePickerPopupFooterComponent,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './automate-timepicker-popup.component.html',
   styleUrls: ['./automate-timepicker-popup.component.scss'],
   encapsulation: ViewEncapsulation.None
@@ -32,7 +31,7 @@ export class AutomateTimePickerPopupComponent {
   public placeholder = '';
 
   @Input()
-  public theme: 'default' | 'dark' | 'default christmas' | 'dark christmas' = 'default';
+  public theme: 'default' | 'dark' = 'default';
 
   @Input()
   public config: TimePickerConfig;

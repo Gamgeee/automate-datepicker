@@ -15,7 +15,7 @@ import { AutomateTimePickerMinutesClockComponent } from './automate-timepicker-m
 })
 export class AutomateTimePickerClockComponent {
     @Input()
-    public theme: 'default' | 'dark' | 'default christmas' | 'dark christmas' = 'default';
+    public theme: 'default' | 'dark' = 'default';
 
     @Input()
     public set selectedTime(value: AutomateTimePickerTime) {

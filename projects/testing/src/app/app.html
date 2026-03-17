@@ -1,101 +1,243 @@
-<div class="main-block">
-  <h4>Time Picker</h4>
-  <div>
-    <automate-timepicker [id]="'1'" [config]="timePickerConfig" (onTimeChanged)="timeChanged($event)">
-      <ng-template appendToTmp let-formattedTime="formattedTime">
-        <div class="timepicker-input" style="border: 1px solid red; width: 3rem; height: 2rem;">
-          {{formattedTime}}
+<div class="testing-page">
+  <header class="page-header">
+    <h1>Automate UI Components</h1>
+    <p class="subtitle">Testing showcase for Date Picker and Time Picker controls</p>
+  </header>
+
+  <!-- ==================== TIME PICKER SECTION ==================== -->
+  <section class="section">
+    <h2 class="section-title">
+      <span class="section-icon">🕐</span>
+      Time Picker
+    </h2>
+
+    <div class="cases-grid">
+      <div class="case-block">
+        <h3 class="case-title">Default Theme</h3>
+        <p class="case-description">Standard time picker with default light theme and 12-hour format.</p>
+        <div class="case-demo">
+          <automate-timepicker [id]="'tp1'" [config]="timeConfigs.default" [(ngModel)]="timeValue">
+          </automate-timepicker>
+          @if (timeValue) {
+          <span class="case-output">Selected: {{ timeValue | date: 'hh:mm a' }}</span>
+          }
         </div>
-      </ng-template>
-    </automate-timepicker>
-
-    {{timeValue}}
-
-    <div>
-      <automate-timepicker [id]="'2'" [(ngModel)]="value" [theme]="'dark'" [config]="timePickerConfig">
-      </automate-timepicker>
-    </div>
-
-    {{value | date: 'MM/dd/yyyy hh:mm a'}}
-  </div>
-
-  <h4>Date Picker</h4>
-  <automate-datepicker style="margin-top:50px" [theme]="'default christmas'" [config]="config" [(ngModel)]="value"
-    [placement]="'left'" (ngModelChange)="dateChanged($event)" (onMonthChanged)="log($event)"
-    (onYearChanged)="log($event)">
-    <ng-template #footerTemplate>
-      <div style="border: 1px solid red; width: 3rem; height: 2rem;">
-dsfsdf
-      </div>
-    </ng-template>
-  </automate-datepicker>
-
-  <div style="width: 400px">
-    <automate-datepicker style="margin-top:50px;width:100%" [config]="config" [ngModel]="value" [placement]="'left'"
-      [container]="'body'" (ngModelChange)="dateChanged($event)">
-
-      <ng-template #footerTemplate>
-        <div style="border: 1px solid red; width: 3rem; height: 2rem;">
-dsff
-        </div>
-      </ng-template>
-    </automate-datepicker>
-  </div>
-
-  <div>
-    <automate-datepicker style="margin-top:50px" [theme]="'dark christmas'" [container]="'body'" [config]="config"
-      [ngModel]="value" [placement]="'left'" (ngModelChange)="dateChanged($event)">
-      <!-- <ng-template appendToTmp let-formattedDate="formattedDate">
-        <div class="input-group">
-          <input class="form-control" [ngModel]="formattedDate" />
-
-          <div class="input-group-append">
-            <span class="input-group-text" id="basic-addon2">$</span>
-          </div>
-        </div>
-      </ng-template> -->
-    </automate-datepicker>
-  </div>
-
-  <div>
-    <automate-datepicker style="margin-top:50px" [theme]="'dark'" [config]="config" [ngModel]="value"
-      [placement]="'left'" [container]="'body'" (ngModelChange)="dateChanged($event)">
-    </automate-datepicker>
-  </div>
-
-  <!-- <div class="scroll">
-    <div class="scroll-inner">
-      <div>
-        <automate-datepicker style="margin-top:50px" [theme]="'dark christmas'" [config]="config" [ngModel]="value"
-          [placement]="'right'" (ngModelChange)="dateChanged($event)">
-          <ng-template appendToTmp let-formattedDate="formattedDate">
-            <div class="input-group">
-              <input class="form-control" style="outline:none;box-shadow: none" [ngModel]="formattedDate" />
-
-              <div class="input-group-append">
-                <span class="input-group-text" id="basic-addon2">$</span>
-              </div>
-            </div>
-          </ng-template>
-        </automate-datepicker>
       </div>
 
-      <div>
-        <automate-datepicker style="margin-top:50px" [theme]="'dark christmas'" [config]="config" [ngModel]="value"
-          [container]="'body'" [placement]="'right'" (ngModelChange)="dateChanged($event)">
-          <ng-template appendToTmp let-formattedDate="formattedDate">
-            <div class="input-group">
-              <input class="form-control" style="outline:none;box-shadow: none" [ngModel]="formattedDate" />
+      <div class="case-block">
+        <h3 class="case-title">Dark Theme</h3>
+        <p class="case-description">Time picker with dark theme styling.</p>
+        <div class="case-demo">
+          <automate-timepicker [id]="'tp2'" [theme]="'dark'" [config]="timeConfigs.default" [(ngModel)]="timeValue">
+          </automate-timepicker>
+        </div>
+      </div>
 
-              <div class="input-group-append">
-                <span class="input-group-text" id="basic-addon2">$</span>
-              </div>
-            </div>
-          </ng-template>
-        </automate-datepicker>
+      <div class="case-block">
+        <h3 class="case-title">Event-Based (onTimeChanged)</h3>
+        <p class="case-description">Uses onTimeChanged event instead of ngModel for one-way data flow.</p>
+        <div class="case-demo">
+          <automate-timepicker [id]="'tp5'" [config]="timeConfigs.defaultTime" (onTimeChanged)="timeChanged($event)">
+          </automate-timepicker>
+          <span class="case-output">{{ timeFormatted }}</span>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <h3 class="case-title">Min / Max Time</h3>
+        <p class="case-description">Time selection restricted between 8:00 AM and 6:00 PM.</p>
+        <div class="case-demo">
+          <automate-timepicker [id]="'tp6'" [config]="timeConfigs.minMax" [(ngModel)]="timeValue">
+          </automate-timepicker>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <h3 class="case-title">Stay Open After Select</h3>
+        <p class="case-description">Popup remains open after selecting time (closeAfterSelect: false).</p>
+        <div class="case-demo">
+          <automate-timepicker [id]="'tp7'" [config]="timeConfigs.stayOpen" [(ngModel)]="timeValue">
+          </automate-timepicker>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <h3 class="case-title">Default Time</h3>
+        <p class="case-description">Pre-filled with a default time (1:30 PM) when opened with no value.</p>
+        <div class="case-demo">
+          <automate-timepicker [id]="'tp8'" [config]="timeConfigs.defaultTime" [(ngModel)]="timeValue">
+          </automate-timepicker>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <h3 class="case-title">Custom Input Template</h3>
+        <p class="case-description">Custom appendTo template for the trigger element.</p>
+        <div class="case-demo">
+          <automate-timepicker [id]="'tp9'" [config]="timeConfigs.default" [(ngModel)]="timeValue">
+            <ng-template appendToTmp let-formattedTime="formattedTime">
+              <div class="custom-trigger">{{ formattedTime || 'Pick time' }}</div>
+            </ng-template>
+          </automate-timepicker>
+        </div>
       </div>
     </div>
-  </div> -->
+  </section>
 
-  <canvas id="goodCanvas1" width="400" height="100" aria-label="Hello ARIA World" role="img"></canvas>
+  <!-- ==================== DATE PICKER SECTION ==================== -->
+  <section class="section">
+    <h2 class="section-title">
+      <span class="section-icon">📅</span>
+      Date Picker
+    </h2>
+
+    <div class="cases-grid">
+      <div class="case-block">
+        <h3 class="case-title">Default Theme</h3>
+        <p class="case-description">Standard date picker with default light theme. Uses ngModel for two-way binding.</p>
+        <div class="case-demo">
+          <automate-datepicker [config]="dateConfigs.default" [(ngModel)]="dateValue"
+            (ngModelChange)="dateChanged($event)">
+          </automate-datepicker>
+          @if (dateValue) {
+          <span class="case-output">Selected: {{ dateValue | date: 'MMM d, yyyy' }}</span>
+          }
+        </div>
+      </div>
+
+      <div class="case-block">
+        <h3 class="case-title">Dark Theme</h3>
+        <p class="case-description">Date picker with dark theme styling for dark mode applications.</p>
+        <div class="case-demo">
+          <automate-datepicker [theme]="'dark'" [config]="dateConfigs.default" [(ngModel)]="dateValue">
+          </automate-datepicker>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <h3 class="case-title">Christmas Theme</h3>
+        <p class="case-description">Festive light theme with Christmas styling.</p>
+        <div class="case-demo">
+          <automate-datepicker [theme]="'default christmas'" [config]="dateConfigs.default" [(ngModel)]="dateValue">
+          </automate-datepicker>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <h3 class="case-title">Dark Christmas Theme</h3>
+        <p class="case-description">Festive dark theme combining Christmas styling with dark mode.</p>
+        <div class="case-demo">
+          <automate-datepicker [theme]="'dark christmas'" [config]="dateConfigs.default" [(ngModel)]="dateValue">
+          </automate-datepicker>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <h3 class="case-title">Min Date Restriction</h3>
+        <p class="case-description">Dates before today are disabled. Useful for future-only selection.</p>
+        <div class="case-demo">
+          <automate-datepicker [config]="dateConfigs.minDate" [(ngModel)]="dateValue">
+          </automate-datepicker>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <h3 class="case-title">Max Date Restriction</h3>
+        <p class="case-description">Dates after a specified max date are disabled. Useful for past-only selection.</p>
+        <div class="case-demo">
+          <automate-datepicker [config]="dateConfigs.maxDate" [(ngModel)]="dateValue">
+          </automate-datepicker>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <h3 class="case-title">Disabled Dates</h3>
+        <p class="case-description">Specific dates are disabled and cannot be selected.</p>
+        <div class="case-demo">
+          <automate-datepicker [config]="dateConfigs.disabledDates" [(ngModel)]="dateValue">
+          </automate-datepicker>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <h3 class="case-title">Highlighted Dates</h3>
+        <p class="case-description">Specific dates have custom styling (e.g., holidays, events).</p>
+        <div class="case-demo">
+          <automate-datepicker [config]="dateConfigs.highlightedDates" [(ngModel)]="dateValue">
+          </automate-datepicker>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <h3 class="case-title">Stay Open After Select</h3>
+        <p class="case-description">Calendar remains open after selecting a date (closeAfterSelect: false).</p>
+        <div class="case-demo">
+          <automate-datepicker [config]="dateConfigs.stayOpen" [(ngModel)]="dateValue">
+          </automate-datepicker>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <h3 class="case-title">With Footer Template</h3>
+        <p class="case-description">Custom footer content below the calendar (e.g., quick actions, today button).</p>
+        <div class="case-demo">
+          <automate-datepicker [config]="dateConfigs.default" [(ngModel)]="dateValue">
+            <ng-template #footerTemplate>
+              <div class="footer-content">Custom footer</div>
+            </ng-template>
+          </automate-datepicker>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <h3 class="case-title">Custom Input Template</h3>
+        <p class="case-description">Custom appendTo template for the trigger element instead of default input.</p>
+        <div class="case-demo">
+          <automate-datepicker [config]="dateConfigs.default" [(ngModel)]="dateValue">
+            <ng-template appendToTmp let-formattedDate="formattedDate">
+              <div class="custom-trigger">{{ formattedDate || 'Pick date' }}</div>
+            </ng-template>
+          </automate-datepicker>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <h3 class="case-title">Placement Right</h3>
+        <p class="case-description">Calendar dropdown opens to the right of the trigger.</p>
+        <div class="case-demo">
+          <automate-datepicker [config]="dateConfigs.default" [placement]="'right'" [(ngModel)]="dateValue">
+          </automate-datepicker>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <h3 class="case-title">Container Body</h3>
+        <p class="case-description">Calendar is appended to body to avoid overflow issues in scrollable containers.</p>
+        <div class="case-demo">
+          <automate-datepicker [config]="dateConfigs.default" [container]="'body'" [(ngModel)]="dateValue">
+          </automate-datepicker>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <h3 class="case-title">Start View: Months</h3>
+        <p class="case-description">Calendar opens in month selection mode instead of days.</p>
+        <div class="case-demo">
+          <automate-datepicker [config]="dateConfigs.startMonths" [(ngModel)]="dateValue">
+          </automate-datepicker>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <h3 class="case-title">Event Callbacks</h3>
+        <p class="case-description">Listen to onMonthChanged and onYearChanged events for navigation tracking.</p>
+        <div class="case-demo">
+          <automate-datepicker [config]="dateConfigs.default" [(ngModel)]="dateValue"
+            (onMonthChanged)="log('Month changed', $event)" (onYearChanged)="log('Year changed', $event)">
+          </automate-datepicker>
+          <span class="case-output">Check console for events</span>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>

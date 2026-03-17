@@ -1,7 +1,7 @@
 <div #clockCircle class="clock-circle" (mousedown)="onClockFaceMouseDown($event)">
-  <div #clockCenter class="clock-center"></div>
+  <div class="clock-center"></div>
 
-  <automate-timepicker-clock-hand [clockCenter]="clockCenter" [selectedItem]="selectedHour">
+  <automate-timepicker-clock-hand [selectedItem]="selectedHour">
   </automate-timepicker-clock-hand>
 
   <button [id]="hour.id" class="clock-btn" *ngFor="let hour of hours" [style.top]="hour.top" [style.left]="hour.left"

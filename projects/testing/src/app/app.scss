@@ -1,0 +1,147 @@
+// Variables
+$color-bg: #0f172a;
+$color-surface: #1e293b;
+$color-surface-elevated: #334155;
+$color-border: #475569;
+$color-text: #f1f5f9;
+$color-text-muted: #94a3b8;
+$color-accent: #38bdf8;
+$color-accent-soft: rgba(56, 189, 248, 0.15);
+$font-sans: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+$radius: 12px;
+$radius-sm: 8px;
+
+.testing-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, $color-bg 0%, #1a1f35 100%);
+  color: $color-text;
+  font-family: $font-sans;
+  padding: 2rem;
+}
+
+.page-header {
+  text-align: center;
+  padding: 2rem 0;
+
+  h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.5rem;
+    background: linear-gradient(135deg, #fff 0%, $color-accent 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    color: $color-text-muted;
+    font-size: 1rem;
+    margin: 0;
+  }
+}
+
+.section {
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid $color-border;
+  color: $color-text;
+
+  .section-icon {
+    font-size: 1.75rem;
+  }
+}
+
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+
+.case-block {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  padding: 1.25rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    border-color: rgba($color-accent, 0.5);
+    box-shadow: 0 0 0 1px rgba($color-accent, 0.2);
+  }
+}
+
+.case-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  color: $color-text;
+}
+
+.case-description {
+  font-size: 0.8125rem;
+  color: $color-text-muted;
+  line-height: 1.5;
+  margin: 0 0 1rem;
+}
+
+.case-demo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.5rem;
+
+  automate-datepicker,
+  automate-timepicker {
+    display: inline-block;
+  }
+}
+
+.case-output {
+  font-size: 0.8125rem;
+  color: $color-accent;
+  font-weight: 500;
+}
+
+.custom-trigger {
+  padding: 0.5rem 0.875rem;
+  background: $color-surface-elevated;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+
+  &:hover {
+    background: rgba($color-accent, 0.1);
+    border-color: $color-accent;
+  }
+}
+
+.footer-content {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8125rem;
+  color: $color-text-muted;
+  text-align: center;
+}
+
+// Ensure datepicker/timepicker inputs look good in dark context
+:host ::ng-deep {
+  .datepicker-input,
+  .timepicker-input {
+    padding: 0.5rem 0.875rem;
+    border-radius: $radius-sm;
+    font-size: 0.875rem;
+    min-width: 140px;
+  }
+}

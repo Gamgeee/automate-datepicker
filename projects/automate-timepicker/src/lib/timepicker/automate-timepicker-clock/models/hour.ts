@@ -1,5 +1,5 @@
-import { DatePipe } from '@angular/common';
 import { AutomateTimePickerTime } from '../../models/automate-timepicker-time';
+import { getDatePipe } from '../../utils/date-pipe-cache';
 import { TimePickerConfig } from '../../models/timepicker-config';
 import { ClockItem } from './clock-item.base';
 
@@ -45,7 +45,7 @@ export class Hour extends ClockItem {
       throw new Error('Config should be provided.');
     }
 
-    const dateTimePipe = new DatePipe(this._config.locale ?? 'en-US');
+    const dateTimePipe = getDatePipe(this._config.locale ?? 'en-US');
 
     const dateTime = new Date();
     dateTime.setHours(this._hour);

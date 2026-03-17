@@ -14,9 +14,6 @@ const HAND_THICKNESS_PX = 2;
 })
 export class AutomateTimePickerClockHandComponent implements AfterViewChecked {
   @Input()
-  public clockCenter!: HTMLElement;
-
-  @Input()
   public set selectedItem(value: ClockItem) {
     this._selectedItem = value;
     this._updateHand();

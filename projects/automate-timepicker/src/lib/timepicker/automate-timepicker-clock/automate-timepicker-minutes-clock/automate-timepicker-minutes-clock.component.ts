@@ -1,5 +1,6 @@
-import { Component, Output, EventEmitter, Input, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Component, Output, EventEmitter, Input, ViewChild, ElementRef, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 import { AutomateTimePickerTime } from '../../models/automate-timepicker-time';
 import { TimePickerConfig } from '../../models/timepicker-config';
 import { Minutes } from '../models/minutes';
@@ -18,6 +19,7 @@ export class AutomateTimePickerMinutesClockComponent implements OnDestroy {
   public set selectedTime(value: AutomateTimePickerTime) {
     this._selectedTime = value;
 
+    this._subscribeToTimeChanges();
     this._setSelectedMinutes();
   }
   public get selectedTime(): AutomateTimePickerTime {
@@ -47,16 +49,33 @@ export class AutomateTimePickerMinutesClockComponent implements OnDestroy {
 
   private _selectedTime!: AutomateTimePickerTime;
   private _config!: TimePickerConfig;
+  private _onSelectedTimeMinutesChanged: Subscription | null = null;
   private _isDragging = false;
   private _boundMove = (ev: MouseEvent) => this._onDragMove(ev);
   private _boundUp = () => this._onDragEnd();
 
-  constructor() {
+  constructor(private _cdr: ChangeDetectorRef) {
     this._createMinutes();
   }
 
   ngOnDestroy(): void {
     this._onDragEnd();
+    if (this._onSelectedTimeMinutesChanged) {
+      this._onSelectedTimeMinutesChanged.unsubscribe();
+    }
+  }
+
+  private _subscribeToTimeChanges(): void {
+    if (this._onSelectedTimeMinutesChanged) {
+      this._onSelectedTimeMinutesChanged.unsubscribe();
+    }
+    
+    if (!this._selectedTime) return;
+
+    this._onSelectedTimeMinutesChanged = this._selectedTime.events.onMinutesChanged.subscribe(() => {
+      this._setSelectedMinutes();
+      this._cdr.markForCheck();
+    });
   }
 
   public selectMinutes(minutes: Minutes): void {

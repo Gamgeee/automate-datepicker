@@ -1,8 +1,10 @@
 import {
-  Component, forwardRef, Input, Output, EventEmitter, ViewChild, OnDestroy, ContentChild, TemplateRef, ViewEncapsulation
+  Component, forwardRef, Input, Output, EventEmitter, ViewChild, OnDestroy,
+  ContentChild, TemplateRef, ViewEncapsulation, ChangeDetectorRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 import { AppendToTemplateContext } from '../directives/append-to-template-context';
 import { AppendToTemplateDirective } from '../directives/append-to-template.directive';
 import { AutomateTimePickerTime } from './models/automate-timepicker-time';
@@ -31,8 +33,7 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR = {
   styleUrls: [
     './automate-timepicker.component.scss',
     './theme/default.scss',
-    './theme/dark.scss',
-    './theme/christmas.scss'
+    './theme/dark.scss'
   ],
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None
@@ -48,7 +49,7 @@ export class AutomateTimePickerComponent implements OnDestroy, ControlValueAcces
   public placeholder: string = '';
 
   @Input()
-  public theme: 'default' | 'dark' | 'default christmas' | 'dark christmas' = 'default';
+  public theme: 'default' | 'dark' = 'default';
 
   @Input()
   public set config(value: TimePickerConfig) {
@@ -57,15 +58,26 @@ export class AutomateTimePickerComponent implements OnDestroy, ControlValueAcces
     this._configOrDefault = TimePickerConfig.createDefaultOrUseExisting(this._config);
 
     this.time.setConfig(this._configOrDefault);
+
+    if (!this._hasReceivedValueFromNgModel && this._config.defaultTime) {
+      this.time.setTime(null);
+      this._updatedFormattedTime();
+    }
+
+    this._subscribeOnConfigUpdated();
   }
   public get config(): TimePickerConfig {
     return this._config;
   }
 
+  public get configOrDefault(): TimePickerConfig {
+    return this._configOrDefault;
+  }
+
   @Output()
-  public open = new EventEmitter<void>();
+  public onOpen = new EventEmitter<void>();
   @Output()
-  public close = new EventEmitter<void>();
+  public onClose = new EventEmitter<void>();
   @Output()
   public onTimeChanged = new EventEmitter<TimeChangedEvent>();
 
@@ -87,8 +99,10 @@ export class AutomateTimePickerComponent implements OnDestroy, ControlValueAcces
 
   private _config!: TimePickerConfig;
   private _configOrDefault: TimePickerConfig;
+  private _configUpdatedSub?: Subscription;
+  private _hasReceivedValueFromNgModel = false;
 
-  constructor() {
+  constructor(private readonly _cdr: ChangeDetectorRef) {
     this._configOrDefault = TimePickerConfig.createDefaultOrUseExisting();
 
     this.time = new AutomateTimePickerTime(this._configOrDefault.defaultTime);
@@ -96,11 +110,17 @@ export class AutomateTimePickerComponent implements OnDestroy, ControlValueAcces
   }
 
   public ngOnDestroy(): void {
+    if (this._configUpdatedSub) {
+      this._configUpdatedSub.unsubscribe();
+    }
   }
 
-  public writeValue(value: Date): void {
-    if (value !== this.time.dateTime) {
-      this.time.setTime(value || this._configOrDefault.defaultTime);
+  public writeValue(value: Date | null): void {
+    this._hasReceivedValueFromNgModel = true;
+    const valueTime = value?.getTime();
+    const currentTime = this.time.dateTime?.getTime();
+    if (valueTime !== currentTime) {
+      this.time.setTime(value);
       this._updatedFormattedTime();
     }
   }
@@ -120,9 +140,19 @@ export class AutomateTimePickerComponent implements OnDestroy, ControlValueAcces
     this.disabled = isDisabled;
   }
 
+  public popupOpened(): void {
+    if (this.time.isNull) {
+      this.time.setDisplayTimeToDefaultClamped();
+    }
+
+    this.onOpen.emit();
+  }
+
   public popupClosed(): void {
     this.automateTimepickerPopup.resetClockMode();
     this.time.resetToOriginalDateTime();
+
+    this.onClose.emit();
   }
 
   public save(): void {
@@ -138,9 +168,9 @@ export class AutomateTimePickerComponent implements OnDestroy, ControlValueAcces
   }
 
   public selectTime(time: AutomateTimePickerTime): void {
-    this._updatedFormattedTime();
-
     this.time.setTime(time.dateTime);
+
+    this._updatedFormattedTime();
 
     this.onChange(new Date(time.dateTime));
 
@@ -158,5 +188,19 @@ export class AutomateTimePickerComponent implements OnDestroy, ControlValueAcces
 
   private _updatedFormattedTime(): void {
     this.formattedTime = this.time.formattedTime;
+  }
+
+  private _subscribeOnConfigUpdated(): void {
+    if (this._configUpdatedSub) {
+      this._configUpdatedSub.unsubscribe();
+    }
+
+    if (this._config?.onUpdated) {
+      this._configUpdatedSub = this._config.onUpdated.subscribe(() => {
+        this._configOrDefault = TimePickerConfig.createDefaultOrUseExisting(this._config);
+        this.time.setConfig(this._configOrDefault);
+        this._cdr.detectChanges();
+      });
+    }
   }
 }

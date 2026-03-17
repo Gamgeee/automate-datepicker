@@ -1,71 +1,103 @@
 import { Component } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { DatePipe, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { DatePickerConfig, AutomateDatePickerComponent } from 'automate-datepicker';
-import { TimePickerConfig, AutomateTimePickerComponent, TimeChangedEvent, AppendToTemplateDirective } from 'automate-timepicker';
+import {
+  DatePickerConfig,
+  AutomateDatePickerComponent,
+  AppendToTemplateDirective as DatePickerAppendToTemplateDirective,
+  EAutomateDatepickerCalendarMode,
+} from 'automate-datepicker';
+import {
+  TimePickerConfig,
+  AutomateTimePickerComponent,
+  TimeChangedEvent,
+  AppendToTemplateDirective as TimePickerAppendToTemplateDirective,
+} from 'automate-timepicker';
 
 @Component({
   selector: 'app-root',
   imports: [
+    CommonModule,
     FormsModule,
     DatePipe,
     AutomateDatePickerComponent,
+    DatePickerAppendToTemplateDirective,
     AutomateTimePickerComponent,
-    AppendToTemplateDirective,
+    TimePickerAppendToTemplateDirective,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App {
-  title = 'automate-datepicker';
+  title = 'automate-ui-testing';
 
-  public value!: Date;
-  public timeValue: string = '12:00 AM';
+  public dateValue: Date = new Date(2026, 2, 6, 12, 34, 0);
+  public timeValue: Date | null = null;
+  public timeFormatted = '';
 
-  public config: DatePickerConfig = new DatePickerConfig({
-    closeAfterSelect: true,
-    minDate: new Date()
-  });
+  public dateConfigs = {
+    default: new DatePickerConfig({ closeAfterSelect: true }),
+    minDate: new DatePickerConfig({
+      closeAfterSelect: true,
+      minDate: new Date(),
+    }),
+    maxDate: new DatePickerConfig({
+      closeAfterSelect: true,
+      maxDate: new Date(2026, 5, 30),
+    }),
+    disabledDates: new DatePickerConfig({
+      closeAfterSelect: true,
+      disabledDates: [
+        new Date(2026, 2, 10),
+        new Date(2026, 2, 15),
+        new Date(2026, 2, 20),
+      ],
+    }),
+    highlightedDates: new DatePickerConfig({
+      closeAfterSelect: true,
+      hightLightedDates: [
+        { date: new Date(2026, 2, 17), style: { background: 'var(--highlight-bg, #e3f2fd)' } },
+        { date: new Date(2026, 2, 25), style: { background: 'var(--highlight-bg, #fff3e0)' } },
+      ],
+    }),
+    stayOpen: new DatePickerConfig({ closeAfterSelect: false }),
+    startMonths: new DatePickerConfig({
+      closeAfterSelect: true,
+      startView: EAutomateDatepickerCalendarMode.Months,
+    }),
+  };
 
-  public timePickerConfig: TimePickerConfig = {
-    closeAfterSelect: true,
-    minTime: { hour: 10, minutes: 33 },
+  public timeConfigs = {
+    default: new TimePickerConfig({ closeAfterSelect: true }),
+    minMax: new TimePickerConfig({
+      closeAfterSelect: true,
+      minTime: { hour: 8, minutes: 0 },
+      maxTime: { hour: 18, minutes: 0 },
+    }),
+    stayOpen: new TimePickerConfig({ closeAfterSelect: false }),
+    defaultTime: new TimePickerConfig({
+      closeAfterSelect: true,
+      defaultTime: new Date(2026, 2, 17, 13, 30, 0),
+    }),
   };
 
   constructor() {
-    this.value = new Date(2026, 2, 6, 12, 34, 0);
     setTimeout(() => {
-      this.config.update({
-        hightLightedDates: [{ date: new Date(2025, 5, 25), style: { background: 'red' } }]
+      this.timeConfigs.defaultTime.update({
+        defaultTime: new Date(2026, 2, 17, 15, 30, 0),
       });
-
-
-    }, 3000);
-
-
-    setTimeout(() => {
-      this.config.update({
-        minDate: new Date(2025, 5, 23)
-      });
-    }, 8000);
-
-    setTimeout(() => {
-      this.config.update({
-        disabledDates: [new Date(2025, 5, 27)]
-      });
-    }, 8000);
+    }, 5000);
   }
 
   public timeChanged(event: TimeChangedEvent): void {
-    this.timeValue = event.formattedTime;
+    this.timeFormatted = event.formattedTime;
   }
 
-  public log(e: any): void {
-    console.log(e);
+  public log(label: string, e: unknown): void {
+    console.log(label, e);
   }
 
   public dateChanged(value: Date): void {
-    this.value = value;
-    console.log(this.value);
+    this.dateValue = value;
   }
 }

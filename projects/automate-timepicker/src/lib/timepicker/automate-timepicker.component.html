@@ -1,18 +1,17 @@
 <div class="automate-timepicker" [ngClass]="theme">
-    <automate-dropdown #dropdown (onClosed)="popupClosed()">
+    <automate-dropdown #dropdown (onOpened)="popupOpened()" (onClosed)="popupClosed()">
         <div dropdown-header class="append-to-wrapper">
             <ng-template #defaultAppendToTemplate>
                 <input [id]="id" class="timepicker-input" [disabled]="disabled" [placeholder]="placeholder"
                     [ngModel]="formattedTime" #timepickerInput />
             </ng-template>
 
-            <ng-template
-                [ngTemplateOutletContext]="{ dateTime: time.dateTime, formattedTime: formattedTime, config: config }"
-                [ngTemplateOutlet]="appendToTemplate?.template || defaultAppendToTemplate">
-            </ng-template>
+            <ng-container
+                *ngTemplateOutlet="appendToTemplate?.template || defaultAppendToTemplate; context: { dateTime: time.dateTime, formattedTime: formattedTime, config: configOrDefault }">
+            </ng-container>
         </div>
 
-        <automate-timepicker-popup #automateTimepickerPopup dropdown-body [theme]="theme" [config]="config"
+        <automate-timepicker-popup #automateTimepickerPopup dropdown-body [theme]="theme" [config]="configOrDefault"
             [selectedTime]="time" (onCancelClick)="cancel()" (onSaveClick)="save()">
         </automate-timepicker-popup>
     </automate-dropdown>

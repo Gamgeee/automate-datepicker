@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs';
 import { TimePickerTime } from "./timepicker-time";
 
 export class TimePickerConfig {
@@ -16,8 +17,16 @@ export class TimePickerConfig {
   public minTime?: TimePickerTime;
   public maxTime?: TimePickerTime;
 
-  public static createDefaultOrUseExisting(existing?: TimePickerConfig): TimePickerConfig {
-    existing = existing || {};
+  public onUpdated = new Subject<void>();
+
+  constructor(initData?: Partial<TimePickerConfig>) {
+    if (initData) {
+      Object.assign(this, initData);
+    }
+  }
+
+  public static createDefaultOrUseExisting(existing: TimePickerConfig | null = null): TimePickerConfig {
+    existing = existing || new TimePickerConfig();
 
     const startOfDay = new Date();
     startOfDay.setHours(0);
@@ -25,7 +34,7 @@ export class TimePickerConfig {
     startOfDay.setSeconds(0);
     startOfDay.setMilliseconds(0);
 
-    return {
+    return Object.assign(new TimePickerConfig(), {
       defaultTime: existing.defaultTime || startOfDay,
       locale: existing.locale || 'en-US',
       timeFormat: existing.timeFormat || 'hh:mm a',
@@ -36,6 +45,12 @@ export class TimePickerConfig {
       closeAfterSelect: existing.closeAfterSelect === false ? false : true,
       minTime: existing.minTime,
       maxTime: existing.maxTime
-    };
+    });
+  }
+
+
+  public update(newData: Partial<TimePickerConfig>): void {
+    Object.assign(this, newData);
+    this.onUpdated.next();
   }
 }

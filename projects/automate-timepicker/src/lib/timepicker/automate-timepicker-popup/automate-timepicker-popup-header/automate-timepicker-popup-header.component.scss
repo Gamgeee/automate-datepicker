@@ -9,7 +9,6 @@
 .hours-and-minutes-container {
   display: flex;
   font-size: 35px;
-  font-weight: 100;
   line-height: 2.25rem;
 }
 
@@ -31,7 +30,6 @@
     cursor: pointer;
     font-size: 18px;
     line-height: 1.25rem;
-    font-weight: 100;
 
     &.disabled {
       opacity: 0.4;

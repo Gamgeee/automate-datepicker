@@ -14,8 +14,7 @@ import { AutomateDropdownContainerComponent } from '../automate-dropdown-contain
   styleUrls: [
     './automate-dropdown.component.scss',
     '../theme/default.scss',
-    '../theme/dark.scss',
-    '../theme/christmas.scss'
+    '../theme/dark.scss'
   ],
   encapsulation: ViewEncapsulation.None
 })

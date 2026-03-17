@@ -1,9 +1,11 @@
-import { DatePipe } from '@angular/common';
 import { Subject } from 'rxjs';
 import { TimePickerConfig } from './timepicker-config';
+import { getDatePipe } from '../utils/date-pipe-cache';
 
 export class AutomateTimePickerTime {
-  public get formattedTime(): string { return this._formattedTime; }
+  public get formattedTime(): string {
+    return this._originalDateTime === null ? '' : this._formattedTime;
+  }
 
   public get formattedHours(): string { return this._formattedHours; }
   public get timeSeparator(): string { return this._timeSeparator; }
@@ -19,6 +21,8 @@ export class AutomateTimePickerTime {
 
   public get events(): Events { return this._events; }
 
+  public get isNull(): boolean { return this._originalDateTime === null; }
+
   private _formattedTime: string;
 
   private _formattedHours: string;
@@ -28,7 +32,7 @@ export class AutomateTimePickerTime {
   private _minutes: number;
 
   private _dateTime: Date;
-  private _originalDateTime: Date;
+  private _originalDateTime: Date | null;
 
   private _timeSeparator: string = ':';
 
@@ -46,15 +50,15 @@ export class AutomateTimePickerTime {
   public setConfig(config: TimePickerConfig): void {
     this._config = config;
 
+    this._clampToMinMax();
     this._updateFormattedTime();
+
+    this._events.onHourChanged.next(this._hour);
+    this._events.onMinutesChanged.next(this._minutes);
   }
 
-  public setTime(dateTime: Date): void {
-    if (!dateTime) {
-      throw new Error('Time is not provided.');
-    }
-
-    this._dateTime = new Date(dateTime);
+  public setTime(dateTime: Date | null): void {
+    this._dateTime = dateTime ? new Date(dateTime) : this._getDefaultTime();
     this._originalDateTime = dateTime;
 
     this._hour = this._dateTime.getHours();
@@ -62,6 +66,24 @@ export class AutomateTimePickerTime {
 
     this._clampToMinMax();
     this._updateFormattedTime();
+
+    this._events.onHourChanged.next(this._hour);
+    this._events.onMinutesChanged.next(this._minutes);
+  }
+
+  public setDisplayTimeToCurrentClamped(): void {
+    this._dateTime = new Date();
+    this._hour = this._dateTime.getHours();
+    this._minutes = this._dateTime.getMinutes();
+    this._clampToMinMax();
+    this._updateFormattedTime();
+  }
+
+  public setDisplayTimeToDefaultClamped(): void {
+    this._dateTime = this._getDefaultTime();
+
+    this.setHour(this._dateTime.getHours());
+    this.setMinutes(this._dateTime.getMinutes());
   }
 
   public setHour(hour: number): void {
@@ -82,6 +104,8 @@ export class AutomateTimePickerTime {
 
     this._clampToMinMax();
     this._updateFormattedTime();
+
+    this._events.onMinutesChanged.next(this._minutes);
   }
 
   public switchToBeforeNoon(): void {
@@ -101,7 +125,20 @@ export class AutomateTimePickerTime {
   }
 
   public resetToOriginalDateTime(): void {
+    if (this._originalDateTime === null) {
+      this.setDisplayTimeToDefaultClamped();
+      return;
+    }
     this.setTime(this._originalDateTime);
+  }
+
+  private _getDefaultTime(): Date {
+    if (this._config?.defaultTime) {
+      return new Date(this._config.defaultTime);
+    }
+    const startOfDay = new Date();
+    startOfDay.setHours(0, 0, 0, 0);
+    return startOfDay;
   }
 
   private _clampToMinMax(): void {
@@ -130,7 +167,7 @@ export class AutomateTimePickerTime {
       return;
     }
 
-    const dateTimePipe = new DatePipe(this._config.locale ?? 'en-US');
+    const dateTimePipe = getDatePipe(this._config.locale ?? 'en-US');
 
     this._formattedHours = dateTimePipe.transform(this._dateTime, this._config.headerHoursFormat) ?? '';
     this._formattedMinutes = dateTimePipe.transform(this._dateTime, this._config.headerMinutesFormat) ?? '';
@@ -141,4 +178,5 @@ export class AutomateTimePickerTime {
 
 export class Events {
   public onHourChanged = new Subject<number>();
+  public onMinutesChanged = new Subject<number>();
 }
