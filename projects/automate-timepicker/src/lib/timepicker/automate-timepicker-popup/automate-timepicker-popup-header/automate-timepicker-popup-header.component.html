@@ -1,0 +1,19 @@
+<div class="timepicker-header">
+  <div class="hours-and-minutes-container">
+    <span class="hours" [class.selected]="clockMode === EClockMode.Hours" (click)="hoursClick()">
+      {{selectedTime.formattedHours}}
+    </span>
+
+    <span>{{selectedTime.timeSeparator}}</span>
+    <span class="minutes" [class.selected]="clockMode === EClockMode.Minutes" (click)="minutesClick()">
+      {{selectedTime.formattedMinutes}}
+    </span>
+  </div>
+
+  <div class="meridiem">
+    <span [class.selected]="selectedTime.isBeforeNoon" [class.disabled]="isAmDisabled"
+      (click)="!isAmDisabled && meridiemClick(false)">AM</span>
+    <span [class.selected]="selectedTime.isAfterNoon" [class.disabled]="isPmDisabled"
+      (click)="!isPmDisabled && meridiemClick(true)">PM</span>
+  </div>
+</div>

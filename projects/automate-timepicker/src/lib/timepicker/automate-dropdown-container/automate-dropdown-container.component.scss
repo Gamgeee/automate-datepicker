@@ -1,0 +1,71 @@
+$container-background: #ffffff;
+$container-border-color: #f0f0f0;
+$container-box-shadow-color: rgba(0, 0, 0, 0.25);
+$animation-duration: 0.2s;
+$animation-easing: ease-out;
+
+@keyframes backdrop-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes backdrop-leave {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes container-enter {
+  from {
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes container-leave {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+}
+
+.automate-dropdown-container-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1059;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  animation: backdrop-enter $animation-duration $animation-easing forwards;
+}
+
+:host.is-closing .automate-dropdown-container-backdrop {
+  animation: backdrop-leave $animation-duration $animation-easing forwards;
+}
+
+.automate-dropdown-container {
+  position: absolute;
+  z-index: 1060;
+  background: white;
+  border: 1px solid $container-border-color;
+  box-shadow: 5px 9px 12px 1px $container-box-shadow-color;
+  -webkit-box-shadow: 5px 9px 12px 1px $container-box-shadow-color;
+  -moz-box-shadow: 5px 9px 12px 1px $container-box-shadow-color;
+  animation: container-enter $animation-duration $animation-easing forwards;
+}
+
+:host.is-closing .automate-dropdown-container {
+  animation: container-leave $animation-duration $animation-easing forwards;
+}

@@ -1,0 +1,14 @@
+.date-picker-container {
+  position: absolute;
+  font-family: inherit;
+  white-space: nowrap;
+  border-radius: 4px;
+  padding: 0 5px;
+  margin-top: 1px;
+  z-index: 1;
+  border: 1px solid transparent;
+}
+
+:host {
+  position: relative;
+}

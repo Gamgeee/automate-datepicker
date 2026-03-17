@@ -1,0 +1,17 @@
+<div class="header-container">
+    <automate-datepicker-calendar-days-mode-header *ngIf="mode === EAutomateDatepickerCalendarMode.Days" [currentYear]="currentYear"
+        [currentMonth]="currentMonth" (onYearSelected)="onYearSelected.emit($event)" (onMonthSelected)="onMonthSelected.emit($event)"
+        [config]="config" (onOpenYearsCalendar)="onOpenYearsCalendar.emit()" (onOpenMonthsCalendar)="onOpenMonthsCalendar.emit($event)">
+    </automate-datepicker-calendar-days-mode-header>
+
+
+    <automate-datepicker-calendar-months-mode-header *ngIf="mode === EAutomateDatepickerCalendarMode.Months"
+        [currentYear]="currentYear" [config]="config" (onYearSelected)="onYearSelected.emit($event)" (onMonthSelected)="onMonthSelected.emit($event)"
+        (onOpenYearsCalendar)="onOpenYearsCalendar.emit()">
+    </automate-datepicker-calendar-months-mode-header>
+
+    <automate-datepicker-calendar-years-mode-header *ngIf="mode === EAutomateDatepickerCalendarMode.Years"
+        [currentYearsRange]="currentYearsRange" [config]="config" (onNextYearsRange)="onNextYearsRange.emit()"
+        (onPrevYearsRange)="onPrevYearsRange.emit()">
+    </automate-datepicker-calendar-years-mode-header>
+</div>

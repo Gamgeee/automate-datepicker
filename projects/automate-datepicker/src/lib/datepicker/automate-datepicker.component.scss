@@ -1,0 +1,29 @@
+automate-datepicker {
+  display: inline-flex;
+}
+
+.automate-datepicker {
+  display: inline-flex;
+  width: 100%;
+}
+
+.append-to-container {
+  display: flex;
+  width: 100%;
+}
+
+.append-to-wrapper {
+  width: 100%;
+  display: flex;
+}
+
+.datepicker-input {
+  padding: 0.375rem 0.75rem;
+  font-size: 14px;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.datepicker-input:focus {
+  outline: none;
+}

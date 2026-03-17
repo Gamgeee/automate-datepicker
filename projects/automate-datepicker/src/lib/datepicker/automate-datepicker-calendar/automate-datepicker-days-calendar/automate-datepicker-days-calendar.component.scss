@@ -1,0 +1,35 @@
+.day-of-week,
+.day {
+  width: calc((100% / 7) - 4px);
+  height: 30px;
+}
+
+.day-of-week {
+  font-size: 12px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2px;
+  font-weight: 500;
+  cursor: default;
+}
+
+.day {
+  display: inline-flex;
+  border-radius: 2px;
+  margin: 2px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  border-radius: 50%;
+  transition: all 0.5s;
+  line-height: 30px;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+}
+
+.day.disabled {
+  cursor: default;
+  opacity: 0.5;
+}

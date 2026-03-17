@@ -1,0 +1,7 @@
+<div class="append-to-wrapper" (click)="toggle()" #appendToTmpWrapper>
+  <ng-content select="[dropdown-header]"></ng-content>
+</div>
+
+<ng-template #dropdownBodyTemplate>
+  <ng-content select="[dropdown-body]"></ng-content>
+</ng-template>

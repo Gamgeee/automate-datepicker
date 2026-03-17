@@ -1,0 +1,16 @@
+.days-header {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.current-month {
+    display: inline-flex;
+    cursor: pointer;
+}
+
+.current-year {
+    display: inline-flex;
+    cursor: pointer;
+}

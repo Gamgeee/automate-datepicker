@@ -1,0 +1,37 @@
+{
+  "name": "automate-ui",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng build automate-datepicker && ng build automate-timepicker && ng serve testing --port 4200",
+    "serve": "ng serve testing --port 4200",
+    "build": "ng build automate-datepicker && ng build automate-timepicker && ng build testing",
+    "build:testing": "ng build automate-datepicker && ng build automate-timepicker && ng build testing",
+    "watch": "ng build testing --watch --configuration development",
+    "watch:datepicker": "ng build automate-datepicker --watch",
+    "watch:timepicker": "ng build automate-timepicker --watch",
+    "test": "ng test"
+  },
+  "private": true,
+  "packageManager": "npm@10.9.2",
+  "dependencies": {
+    "@angular/common": "^21.2.0",
+    "@angular/compiler": "^21.2.0",
+    "@angular/core": "^21.2.0",
+    "@angular/forms": "^21.2.0",
+    "@angular/platform-browser": "^21.2.0",
+    "@angular/router": "^21.2.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^21.2.1",
+    "@angular/cli": "^21.2.1",
+    "@angular/compiler-cli": "^21.2.0",
+    "jsdom": "^28.0.0",
+    "ng-packagr": "^21.2.0",
+    "prettier": "^3.8.1",
+    "typescript": "~5.9.2",
+    "vitest": "^4.0.8"
+  }
+}

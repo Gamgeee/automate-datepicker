@@ -1,0 +1,19 @@
+<div #clockCircle class="clock-circle" (mousedown)="onClockFaceMouseDown($event)">
+  <div #clockCenter class="clock-center"></div>
+
+  <automate-timepicker-clock-hand [clockCenter]="clockCenter" [selectedItem]="selectedMinutes">
+  </automate-timepicker-clock-hand>
+
+
+  <ng-container *ngFor="let m of minutes">
+    <button *ngIf="m.showMinutes" [id]="m.id" [class.clock-btn]="m.showMinutes" [class.clock-dot]="!m.showMinutes"
+      [style.top]="m.top" [style.left]="m.left" [class.selected]="m.isSelected" (mouseup)="selectMinutes(m)">
+      {{m.showMinutes ? m.formattedMinutes : ''}}
+    </button>
+
+    <div *ngIf="!m.showMinutes" [id]="m.id" [class.clock-btn]="m.showMinutes" [class.clock-dot]="!m.showMinutes"
+      [style.top]="m.top" [style.left]="m.left" [class.selected]="m.isSelected" (mouseup)="selectMinutes(m)">
+      {{m.showMinutes ? m.formattedMinutes : ''}}
+    </div>
+  </ng-container>
+</div>

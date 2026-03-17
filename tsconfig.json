@@ -1,0 +1,54 @@
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "automate-datepicker": ["./dist/automate-datepicker"],
+      "automate-timepicker": ["./dist/automate-timepicker"],
+      "testing": ["./dist/testing"]
+    },
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "preserve"
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/automate-datepicker/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/automate-datepicker/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/automate-timepicker/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/automate-timepicker/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/testing/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/testing/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/testing/tsconfig.spec.json"
+    }
+  ]
+}

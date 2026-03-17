@@ -1,0 +1,17 @@
+<div class="days-header">
+    <div class="chevron-container" [class.disabled]="!isPrevMonthEnabled" (click)="prevMonth()">
+        <chevron [orientation]="'left'"></chevron>
+    </div>
+
+    <div class="current-month" (click)="openMonthsCalendar()">
+        {{currentMonth.monthTitle}}
+    </div>
+
+    <div class="current-year" (click)="openYearsCalendar()">
+        {{currentYear.yearTitle}}
+    </div>
+
+    <div class="chevron-container" [class.disabled]="!isNextMonthEnabled" (click)="nextMonth()">
+        <chevron [orientation]="'right'"></chevron>
+    </div>
+</div>

@@ -1,0 +1,152 @@
+// Popup & surface
+$popup-background: #1e293b;
+$popup-border-color: #334155;
+// Input
+$input-background: #0f172a;
+$input-border-color: #475569;
+$input-font-color: #e2e8f0;
+$input-focus-border-color: #64748b;
+// Clock header
+$clock-header-unselected-color: #94a3b8;
+$clock-header-selected-color: #f8fafc;
+// Clock container
+$clock-container-border-top-color: #334155;
+// Clock circle
+$clock-circle-background: #314158;
+$clock-number-color: #90a1b9;
+$clock-center-background: #0ea5e9;
+$clock-hand-background: #0ea5e9;
+$clock-btn-selected-color: #ffffff;
+$clock-btn-selected-background: #0ea5e9;
+// Clock footer
+$clock-footer-border-top-color: #334155;
+$clock-footer-button-color: #ffffff;
+$clock-footer-button-cancel-background: #ef4444;
+$clock-footer-button-save-background: #0ea5e9;
+
+// Dropdown container: no border, transparent (popup provides its own card)
+.automate-dropdown-container:has(.automate-timepicker-popup.dark) {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+}
+
+.automate-timepicker.dark,
+.automate-timepicker-popup.dark {
+
+  // Input
+  .timepicker-input {
+    background-color: $input-background;
+    border: 1px solid $input-border-color;
+    color: $input-font-color;
+  }
+
+  .timepicker-input::placeholder {
+    color: #64748b;
+  }
+
+  .timepicker-input:focus {
+    border-color: $input-focus-border-color;
+    outline: none;
+  }
+}
+
+// Container + popup (popup is in overlay so it has .automate-timepicker-popup, not .automate-timepicker)
+.automate-timepicker.dark,
+.clock.dark,
+.automate-timepicker-popup.dark {
+
+  // Popup card
+  &.automate-timepicker-popup.dark {
+    background: $popup-background;
+    border: 1px solid $popup-border-color;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  // Clock container
+  .clock-container-wrapper {
+    border-top: 1px solid $clock-container-border-top-color;
+  }
+
+  // Clock header (time display + AM/PM)
+  .timepicker-header {
+    color: $clock-header-selected-color;
+  }
+
+  .hours,
+  .minutes {
+    color: $clock-header-unselected-color;
+  }
+
+  .hours.selected,
+  .minutes.selected {
+    color: $clock-header-selected-color;
+  }
+
+  .meridiem {
+    span {
+      color: $clock-header-unselected-color;
+    }
+  }
+
+  .meridiem {
+    span {
+      &.selected {
+        color: $clock-header-selected-color;
+      }
+    }
+  }
+
+  // Clock circle
+  .clock-circle {
+    background-color: $clock-circle-background;
+  }
+
+  .clock-btn:not(.selected) {
+    color: $clock-number-color;
+  }
+
+  .clock-center {
+    background-color: $clock-center-background;
+  }
+
+  .clock-hand {
+    background-color: $clock-hand-background;
+  }
+
+  .clock-btn.selected {
+    color: $clock-btn-selected-color;
+    background-color: $clock-btn-selected-background;
+  }
+
+  .clock-dot.selected {
+    background-color: $clock-btn-selected-background;
+  }
+
+  // Clock footer
+  .timepicker-footer {
+    border-top: 1px solid $clock-footer-border-top-color;
+
+    button {
+      color: $clock-footer-button-color;
+
+      &.cancel-btn {
+        background-color: $clock-footer-button-cancel-background;
+
+        &:hover {
+          filter: brightness(1.1);
+        }
+      }
+
+      &.save-btn {
+        background-color: $clock-footer-button-save-background;
+
+        &:hover {
+          filter: brightness(1.1);
+        }
+      }
+    }
+  }
+}

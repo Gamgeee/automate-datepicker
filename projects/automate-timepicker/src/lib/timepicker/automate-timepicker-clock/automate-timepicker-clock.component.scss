@@ -1,0 +1,73 @@
+$view-change-duration: 0.22s;
+
+.clock-container-wrapper {
+  padding: 2rem;
+  
+}
+
+.clock-container {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+  transition: transform $view-change-duration ease-in-out;
+
+  &.clock-view-changing {
+    transform: scale(0.82);
+  }
+}
+
+.clock-circle {
+  border-radius: 50%;
+  display: flex;
+  height: 256px;
+  width: 256px;
+  position: relative;
+}
+
+.clock-center {
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  position: absolute;
+  left: calc(50% - 3px);
+  top: calc(50% - 3px);
+}
+
+.clock-hand {
+  position: absolute;
+  height: 2px;
+  pointer-events: none;
+  /* allow click-through to clock face */
+}
+
+.clock-btn {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  position: absolute;
+  cursor: pointer;
+  font-size: 18px;
+  border: none;
+  background-color: transparent;
+}
+
+.clock-dot {
+  height: 0.35rem;
+  width: 0.35rem;
+  border-radius: 50%;
+  position: absolute;
+  cursor: pointer;
+  z-index: 1;
+  border: none;
+  background-color: transparent;
+}
+
+:host {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
