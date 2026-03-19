@@ -117,12 +117,8 @@ export class AutomateTimePickerComponent implements OnDestroy, ControlValueAcces
 
   public writeValue(value: Date | null): void {
     this._hasReceivedValueFromNgModel = true;
-    const valueTime = value?.getTime();
-    const currentTime = this.time.dateTime?.getTime();
-    if (valueTime !== currentTime) {
-      this.time.setTime(value);
-      this._updatedFormattedTime();
-    }
+    this.time.setTime(value);
+    this._updatedFormattedTime();
   }
 
   public onChange = (_: Date) => { };

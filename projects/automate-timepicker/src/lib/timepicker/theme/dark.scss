@@ -14,15 +14,15 @@ $clock-container-border-top-color: #334155;
 // Clock circle
 $clock-circle-background: #314158;
 $clock-number-color: #90a1b9;
-$clock-center-background: #0ea5e9;
-$clock-hand-background: #0ea5e9;
+$clock-center-background: #0192c8;
+$clock-hand-background: #0192c8;
 $clock-btn-selected-color: #ffffff;
-$clock-btn-selected-background: #0ea5e9;
+$clock-btn-selected-background: #0192c8;
 // Clock footer
 $clock-footer-border-top-color: #334155;
 $clock-footer-button-color: #ffffff;
 $clock-footer-button-cancel-background: #ef4444;
-$clock-footer-button-save-background: #0ea5e9;
+$clock-footer-button-save-background: #0192c8;
 
 // Dropdown container: no border, transparent (popup provides its own card)
 .automate-dropdown-container:has(.automate-timepicker-popup.dark) {

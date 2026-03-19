@@ -71,6 +71,21 @@
       </div>
 
       <div class="case-block">
+        <h3 class="case-title">Reactive Forms (value equals default)</h3>
+        <p class="case-description">Uses ReactiveFormsModule. Form value is 10 AM, same as config defaultTime. Verifies time displays correctly when writeValue receives value equal to default.</p>
+        <div class="case-demo" [formGroup]="timeForm">
+          <automate-timepicker [id]="'tp-reactive'" [config]="timeConfigs.defaultTime10Am" formControlName="time">
+            <ng-template appendToTmp let-formattedTime="formattedTime">
+              <span class="custom-trigger">{{ formattedTime || 'Pick time' }}</span>
+            </ng-template>
+          </automate-timepicker>
+          @if (timeForm.get('time')?.value) {
+          <span class="case-output">Form value: {{ timeForm.get('time')?.value | date: 'hh:mm a' }}</span>
+          }
+        </div>
+      </div>
+
+      <div class="case-block">
         <h3 class="case-title">Custom Input Template</h3>
         <p class="case-description">Custom appendTo template for the trigger element.</p>
         <div class="case-demo">

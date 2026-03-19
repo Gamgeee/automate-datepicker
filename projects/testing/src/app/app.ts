@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DatePipe, CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import {
   DatePickerConfig,
   AutomateDatePickerComponent,
@@ -19,6 +19,7 @@ import {
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     DatePipe,
     AutomateDatePickerComponent,
     DatePickerAppendToTemplateDirective,
@@ -34,6 +35,9 @@ export class App {
   public dateValue: Date = new Date(2026, 2, 6, 12, 34, 0);
   public timeValue: Date | null = null;
   public timeFormatted = '';
+
+  /** Reactive forms test: default time 10 AM, form value set to same 10 AM - verifies writeValue sets time correctly */
+  public timeForm: FormGroup;
 
   public dateConfigs = {
     default: new DatePickerConfig({ closeAfterSelect: true }),
@@ -79,9 +83,17 @@ export class App {
       closeAfterSelect: true,
       defaultTime: new Date(2026, 2, 17, 13, 30, 0),
     }),
+    /** Config with 10 AM default - used for reactive forms test where form value equals default */
+    defaultTime10Am: new TimePickerConfig({
+      closeAfterSelect: true,
+      defaultTime: new Date(2026, 2, 17, 10, 0, 0),
+    }),
   };
 
-  constructor() {
+  constructor(private readonly fb: FormBuilder) {
+    this.timeForm = this.fb.group({
+      time: [new Date(2026, 2, 17, 10, 0, 0)],
+    });
     setTimeout(() => {
       this.timeConfigs.defaultTime.update({
         defaultTime: new Date(2026, 2, 17, 15, 30, 0),
