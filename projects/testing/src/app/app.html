@@ -16,7 +16,8 @@
         <h3 class="case-title">Default Theme</h3>
         <p class="case-description">Standard time picker with default light theme and 12-hour format.</p>
         <div class="case-demo">
-          <automate-timepicker [id]="'tp1'" [config]="timeConfigs.default" [(ngModel)]="timeValue">
+          <automate-timepicker [id]="'tp1'" [config]="timeConfigs.default" [(ngModel)]="timeValue"
+            (ngModelChange)="timePickerNgModelChange($event)">
           </automate-timepicker>
           @if (timeValue) {
           <span class="case-output">Selected: {{ timeValue | date: 'hh:mm a' }}</span>
@@ -72,7 +73,8 @@
 
       <div class="case-block">
         <h3 class="case-title">Reactive Forms (value equals default)</h3>
-        <p class="case-description">Uses ReactiveFormsModule. Form value is 10 AM, same as config defaultTime. Verifies time displays correctly when writeValue receives value equal to default.</p>
+        <p class="case-description">Uses ReactiveFormsModule. Form value is 10 AM, same as config defaultTime. Verifies
+          time displays correctly when writeValue receives value equal to default.</p>
         <div class="case-demo" [formGroup]="timeForm">
           <automate-timepicker [id]="'tp-reactive'" [config]="timeConfigs.defaultTime10Am" formControlName="time">
             <ng-template appendToTmp let-formattedTime="formattedTime">

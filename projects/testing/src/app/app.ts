@@ -101,6 +101,11 @@ export class App {
     }, 5000);
   }
 
+  public timePickerNgModelChange(event: Date | null): void {
+    this.timeValue = event;
+    console.log('timePickerNgModelChange', event);
+  }
+
   public timeChanged(event: TimeChangedEvent): void {
     this.timeFormatted = event.formattedTime;
   }

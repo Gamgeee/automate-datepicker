@@ -51,6 +51,7 @@ export class AutomateTimePickerMinutesClockComponent implements OnDestroy {
   private _config!: TimePickerConfig;
   private _onSelectedTimeMinutesChanged: Subscription | null = null;
   private _isDragging = false;
+  private _hasDragged = false;
   private _boundMove = (ev: MouseEvent) => this._onDragMove(ev);
   private _boundUp = () => this._onDragEnd();
 
@@ -89,11 +90,13 @@ export class AutomateTimePickerMinutesClockComponent implements OnDestroy {
     if (!circle) return;
     this._applyMinuteFromEvent(ev, circle.getBoundingClientRect());
     this._isDragging = true;
+    this._hasDragged = false;
     document.addEventListener('mousemove', this._boundMove);
     document.addEventListener('mouseup', this._boundUp);
   }
 
   private _onDragMove(ev: MouseEvent): void {
+    this._hasDragged = true;
     const circle = this.clockCircle?.nativeElement;
     if (!circle) return;
     this._applyMinuteFromEvent(ev, circle.getBoundingClientRect());
@@ -104,7 +107,10 @@ export class AutomateTimePickerMinutesClockComponent implements OnDestroy {
     this._isDragging = false;
     document.removeEventListener('mousemove', this._boundMove);
     document.removeEventListener('mouseup', this._boundUp);
-    this.onMinutesSelected.emit(this.selectedMinutes.minutes);
+    // Only emit from drag-end when user actually dragged; a simple click is handled by the minute button's mouseup
+    if (this._hasDragged) {
+      this.onMinutesSelected.emit(this.selectedMinutes.minutes);
+    }
   }
 
   private _applyMinuteFromEvent(ev: MouseEvent, rect: DOMRect): void {
